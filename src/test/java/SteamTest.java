@@ -23,8 +23,7 @@ public class SteamTest extends BaseTest {
     public void testSteamWeb() {
         page.navigate("https://store.steampowered.com/");
         page.hover(categoriesPage.getCategoriesButton());
-        page.locator(Navigation.getLocatorByCategoriesName(Categories.SPORTS_AND_RACING)).click();
-
+        page.locator(Navigation.getLocatorByCategoriesName(Categories.ACTION)).click();
         page.waitForLoadState(LoadState.LOAD);
         page.mouse().wheel(0, 3000);
         newAndTrendingPage.getNewAndTrendingButton().click();
