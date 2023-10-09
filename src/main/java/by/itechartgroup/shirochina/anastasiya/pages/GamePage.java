@@ -30,4 +30,8 @@ public class GamePage extends BasePage{
     public Locator getBundleBaseSale() {
         return bundleBaseSale;
     }
+    public Locator getSaleLocatorWithDiscount(String sale) {
+        sale = sale.replaceAll("[^0-9]+", "");
+        return page.locator("//div[@id='game_area_purchase']//div[@class = 'discount_pct' and contains(text()," + sale + ")]");
+    }
 }

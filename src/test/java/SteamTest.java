@@ -66,8 +66,8 @@ public class SteamTest extends BaseTest {
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
         if (maxSale != null) {
-            if (gamePage.getSaleLocator().nth(0).isVisible()) {
-                assertThat(gamePage.getSaleLocator().nth(0)).containsText(maxSale);
+            if (gamePage.getSaleLocatorWithDiscount(maxSale).isVisible()) {
+                assertThat(gamePage.getSaleLocatorWithDiscount(maxSale)).containsText(maxSale);
             } else {
                 assertThat(gamePage.getBundleBaseSale().nth(0)).containsText(maxSale);
             }
