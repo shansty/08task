@@ -1,9 +1,6 @@
 import by.itechartgroup.shirochina.anastasiya.Categories;
 import by.itechartgroup.shirochina.anastasiya.pages.*;
-import by.itechartgroup.shirochina.anastasiya.utils.Helper;
-import by.itechartgroup.shirochina.anastasiya.utils.Navigation;
 import com.microsoft.playwright.Download;
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import org.junit.jupiter.api.Assertions;
@@ -14,43 +11,51 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class SteamTest extends BaseTest {
     @Test
     public void testSteamWeb() {
-        page.navigate("https://store.steampowered.com/");
-        page.hover(categoriesPage.getCategoriesButton());
-        page.locator(Navigation.getLocatorByCategoriesName(Categories.ACTION)).click();
-        page.waitForLoadState(LoadState.LOAD);
-        page.mouse().wheel(0, 3000);
-        newAndTrendingPage.getNewAndTrendingButton().click();
+        basePage.getBaseUrl();
+        mainPage.hoverToCategoriesButton();
+        mainPage.clickOnCategory(Categories.ACTION);
+        mainPage.getGameBlock().nth(1).scrollIntoViewIfNeeded();
+        mainPage.getNewAndTrendingButton().click();
 
         //Клик на игру с самой большой скидкой или самой большой ценой
         page.waitForLoadState(LoadState.NETWORKIDLE);
-        List<Locator> listOfSalesLocators = newAndTrendingPage.getSalesLocators().all();
+        List<String> listOfSales = mainPage.getSalesLocators().allInnerTexts();
         String maxSale = null;
+        String salesPrice = null;
         String maxPrice = null;
         Page newPage;
-        if (listOfSalesLocators.size() > 0) {
-            Optional<Locator> maxSaleLocator = listOfSalesLocators.stream().reduce((x, y) -> Helper.getLocatorWithMaxSale(x, y));
-            maxSale = maxSaleLocator.get().textContent();
-            page.waitForLoadState(LoadState.NETWORKIDLE);
+        if (listOfSales.size() > 0) {
+            List<String> listOfSalesModified = listOfSales.stream()
+                    .map(s -> s.replaceAll("[^0-9]", ""))
+                    .collect(Collectors.toList());
+            List<Integer> listOfSalesInt = listOfSalesModified.stream().map(x -> Integer.parseInt(x))
+                    .collect(Collectors.toList());
+            Integer max = listOfSalesInt.stream().max(Integer::compareTo).get();
+            maxSale = "-" + String.valueOf(max) + "%";
+            salesPrice = mainPage.getPriceLocatorBySale(max).textContent();
             newPage = context.waitForPage(() -> {
-                maxSaleLocator.get().locator(newAndTrendingPage.getAdditionToLocator()).click();
+                mainPage.getLinkLocatorBySale(max).nth(0).click();
             });
-            newPage.waitForLoadState(LoadState.LOAD);
+
         } else {
-            List<Locator> listOfPricesLocators = newAndTrendingPage.getPricesLocators().all();
-            Optional<Locator> maxPriceLocator = listOfPricesLocators.stream().reduce((x, y) -> Helper.getLocatorWithMaxPrice(x, y));
-            maxPrice = maxPriceLocator.get().textContent();
-            page.waitForLoadState(LoadState.NETWORKIDLE);
+            List<String> listOfPrices = mainPage.getPricesLocators().allInnerTexts();
+            List<String> listOfPricesModified = listOfPrices.stream()
+                    .map(s -> s.replaceAll("[^0-9]", ""))
+                    .collect(Collectors.toList());
+            List<Double> listOfPricesDouble = listOfPricesModified.stream().map(x -> Double.parseDouble(x))
+                    .collect(Collectors.toList());
+            Double max = listOfPricesDouble.stream().max(Double::compareTo).get();
+            maxPrice = mainPage.getPriceLocatorByPrice(max).textContent();
             newPage = context.waitForPage(() -> {
-                maxPriceLocator.get().locator(newAndTrendingPage.getAdditionToLocator()).click();
+                mainPage.getLinkLocatorByPrice(max).nth(0).click();
             });
-            newPage.waitForLoadState(LoadState.LOAD);
         }
 
         //обработка возраста, если она есть
@@ -66,17 +71,17 @@ public class SteamTest extends BaseTest {
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
         if (maxSale != null) {
-            if (gamePage.getSaleLocatorWithDiscount(maxSale).isVisible()) {
-                assertThat(gamePage.getSaleLocatorWithDiscount(maxSale).nth(0)).containsText(maxSale);
-            } else {
-                assertThat(gamePage.getBundleBaseSale().nth(0)).containsText(maxSale);
-            }
+            gamePage.getSaleLocatorByDiscount(maxSale).scrollIntoViewIfNeeded();
+            assertThat(gamePage.getSaleLocatorByDiscount(maxSale)).containsText(maxSale);
+            assertThat(gamePage.getPriceLocatorBySalesPrice(salesPrice)).containsText(salesPrice);
+
         } else {
-            assertThat(gamePage.getPricelocator().nth(0)).containsText(maxPrice);
+            assertThat(gamePage.getPriceLocatorByPrice(maxPrice)).containsText(maxPrice);
         }
 
         //клик на  кнопке install steam
-        gamePage.getInstallButton().click();
+        BasePage newBasePage = new BasePage(newPage);
+        newBasePage.getInstallButton().click();
         newPage.waitForLoadState(LoadState.LOAD);
         DownloadPage downloadPage = new DownloadPage(newPage);
 
@@ -84,7 +89,7 @@ public class SteamTest extends BaseTest {
         Download download = newPage.waitForDownload(() -> {
             downloadPage.getInstallButton().nth(0).click();
         });
-        Assertions.assertTrue(download!=null);
+        Assertions.assertNotNull(download);
         Assertions.assertEquals("SteamSetup.exe", download.suggestedFilename());
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH-mm-ss");

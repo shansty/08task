@@ -7,7 +7,7 @@ public class DownloadPage extends BasePage {
     private final Locator installButton;
     public DownloadPage(Page page) {
         super(page);
-        this.installButton = page.locator("//a[@href='https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe']");
+        this.installButton = page.locator("//div[@class='about_install win ']/a");
     }
     public Locator getInstallButton() {
         return installButton;

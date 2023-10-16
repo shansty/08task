@@ -1,5 +1,5 @@
-import by.itechartgroup.shirochina.anastasiya.pages.CategoriesPage;
-import by.itechartgroup.shirochina.anastasiya.pages.NewAndTrendingPage;
+import by.itechartgroup.shirochina.anastasiya.pages.BasePage;
+import by.itechartgroup.shirochina.anastasiya.pages.MainPage;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,8 +13,9 @@ public class BaseTest {
     static Browser browser;
     BrowserContext context;
     Page page;
-    CategoriesPage categoriesPage;
-    NewAndTrendingPage newAndTrendingPage;
+    MainPage categoriesPage;
+    BasePage basePage;
+    MainPage mainPage;
 
     @BeforeAll
     public static void launchBrowser() throws IOException {
@@ -31,8 +32,9 @@ public class BaseTest {
     void createContextAndPage() throws Exception {
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
         page = context.newPage();
-        categoriesPage = new CategoriesPage(page);
-        newAndTrendingPage = new NewAndTrendingPage(page);
+        basePage = new BasePage(page);
+        mainPage = new MainPage(page);
+        categoriesPage = new MainPage(page);
     }
 
     @AfterEach
