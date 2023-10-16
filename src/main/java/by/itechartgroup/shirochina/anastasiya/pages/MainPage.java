@@ -45,7 +45,7 @@ public class MainPage extends BasePage {
     }
 
     public Locator getLinkLocatorBySale(int sale) {
-        return page.locator("//div[contains(@class, 'salepreviewwidgets_StoreSalePriceActionWidgetContainer')][.//div[contains(@class, 'salepreviewwidgets_StoreSaleDiscountBox') and contains(text()," + sale + ")]]/../..//a[contains(@href, 'https://store.steampowered.com/app/')]");
+        return page.locator("//div[contains(@class, 'salepreviewwidgets_SaleItemBrowserRow')][.//div[contains(@class, 'salepreviewwidgets_StoreSaleDiscountBox') and contains(text()," + sale + ")]]//a");
     }
 
     public Locator getPriceLocatorByPrice(double price) {
@@ -53,7 +53,7 @@ public class MainPage extends BasePage {
     }
 
     public Locator getLinkLocatorByPrice(double price) {
-        return page.locator("//div[contains(@class, 'salepreviewwidgets_StoreSalePriceBox') and contains(text()," + price + ")]../../../..//a[contains(@href, 'https://store.steampowered.com/app')]");
+        return page.locator("//div[contains(@class, 'salepreviewwidgets_SaleItemBrowserRow')][.//div[contains(@class, 'salepreviewwidgets_StoreOriginalPrice') and contains(text()," + price + ")]//a");
     }
 
     public Locator getPricesLocators() {

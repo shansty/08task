@@ -43,7 +43,6 @@ public class SteamTest extends BaseTest {
             newPage = context.waitForPage(() -> {
                 mainPage.getLinkLocatorBySale(max).nth(0).click();
             });
-
         } else {
             List<String> listOfPrices = mainPage.getPricesLocators().allInnerTexts();
             List<String> listOfPricesModified = listOfPrices.stream()
