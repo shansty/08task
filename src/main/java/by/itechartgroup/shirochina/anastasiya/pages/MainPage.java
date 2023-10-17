@@ -12,6 +12,7 @@ public class MainPage extends BasePage {
     private String categoriesButton = "//div[@id='genre_tab']";
     private String url = "https://store.steampowered.com/";
     private final Locator gameBlock;
+    private final Locator priceAndSaleBlock;
 
     public MainPage(Page page) {
         super(page);
@@ -19,6 +20,7 @@ public class MainPage extends BasePage {
         this.newAndTrendingButton = page.locator("//div[@class='saleitembrowser_FlavorLabel_Dhg57 Focusable' and text() ='New & Trending']");
         this.salesLocators = page.locator("//div[contains(@class, 'saleitembrowser_SaleItemBrowserContainer')]//div[contains(@class, 'salepreviewwidgets_StoreSaleDiscountBox')]");
         this.pricesLocators = page.locator("//div[contains(@class, 'saleitembrowser_SaleItemBrowserContainer')]//div[contains(@class, 'salepreviewwidgets_StoreSalePriceBox')]");
+        this.priceAndSaleBlock = page.locator("//div[contains(@class, 'salepreviewwidgets_StoreSalePriceActionWidgetContainer')]");
     }
     public void hoverToCategoriesButton() {
         page.hover(categoriesButton);
@@ -63,4 +65,7 @@ public class MainPage extends BasePage {
         return pricesLocators;
     }
 
+    public Locator getPriceAndSaleBlock() {
+        return priceAndSaleBlock;
+    }
 }

@@ -1,6 +1,7 @@
 import by.itechartgroup.shirochina.anastasiya.Categories;
 import by.itechartgroup.shirochina.anastasiya.pages.*;
 import com.microsoft.playwright.Download;
+import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +28,7 @@ public class SteamTest extends BaseTest {
 
         //Клик на игру с самой большой скидкой или самой большой ценой;
         page.waitForLoadState(LoadState.NETWORKIDLE);
-        mainPage.getSalesLocators().nth(0).scrollIntoViewIfNeeded();
+        mainPage.getPriceAndSaleBlock().nth(0).scrollIntoViewIfNeeded();
         List<String> listOfSales = mainPage.getSalesLocators().allInnerTexts();
         String maxSale = null;
         String salesPrice = null;
