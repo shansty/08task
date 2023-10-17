@@ -25,7 +25,9 @@ public class SteamTest extends BaseTest {
         mainPage.getBaseUrl();
         mainPage.hoverToCategoriesButton();
         mainPage.clickOnCategory(Categories.ACTION);
-        mainPage.getGameBlock().nth(2).scrollIntoViewIfNeeded();
+        mainPage.getGameBlock().waitFor();
+        page.waitForLoadState();
+        mainPage.getGameBlock().scrollIntoViewIfNeeded();
         mainPage.getNewAndTrendingButton().click();
 
         //Клик на игру с самой большой скидкой или самой большой ценой;

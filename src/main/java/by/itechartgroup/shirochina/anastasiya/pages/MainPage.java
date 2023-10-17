@@ -16,7 +16,7 @@ public class MainPage extends BasePage {
 
     public MainPage(Page page) {
         super(page);
-        this.gameBlock = page.locator("//div[contains(@class, 'SaleSectionForCustomCSS')]");
+        this.gameBlock = page.locator(".sale_item_browser .SaleSectionForCustomCSS");
         this.newAndTrendingButton = page.locator("//div[@class='saleitembrowser_FlavorLabel_Dhg57 Focusable' and text() ='New & Trending']");
         this.salesLocators = page.locator("//div[contains(@class, 'saleitembrowser_SaleItemBrowserContainer')]//div[contains(@class, 'salepreviewwidgets_StoreSaleDiscountBox')]");
         this.pricesLocators = page.locator("//div[contains(@class, 'saleitembrowser_SaleItemBrowserContainer')]//div[contains(@class, 'salepreviewwidgets_StoreSalePriceBox')]");
