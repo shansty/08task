@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -18,14 +19,15 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class SteamTest extends BaseTest {
     @Test
     public void testSteamWeb() {
-        basePage.getBaseUrl();
+        mainPage.getBaseUrl();
         mainPage.hoverToCategoriesButton();
         mainPage.clickOnCategory(Categories.ACTION);
-        mainPage.getGameBlock().nth(1).scrollIntoViewIfNeeded();
+        mainPage.getGameBlock().scrollIntoViewIfNeeded();
         mainPage.getNewAndTrendingButton().click();
 
-        //Клик на игру с самой большой скидкой или самой большой ценой
+        //Клик на игру с самой большой скидкой или самой большой ценой;
         page.waitForLoadState(LoadState.NETWORKIDLE);
+        mainPage.getSalesLocators().nth(0).scrollIntoViewIfNeeded();
         List<String> listOfSales = mainPage.getSalesLocators().allInnerTexts();
         String maxSale = null;
         String salesPrice = null;
@@ -46,7 +48,7 @@ public class SteamTest extends BaseTest {
         } else {
             List<String> listOfPrices = mainPage.getPricesLocators().allInnerTexts();
             List<String> listOfPricesModified = listOfPrices.stream()
-                    .map(s -> s.replaceAll("[^0-9]", ""))
+                    .map(s -> s.replaceAll("[^0-9.]", "")).filter(x->!x.isEmpty())
                     .collect(Collectors.toList());
             List<Double> listOfPricesDouble = listOfPricesModified.stream().map(x -> Double.parseDouble(x))
                     .collect(Collectors.toList());
@@ -79,8 +81,8 @@ public class SteamTest extends BaseTest {
         }
 
         //клик на  кнопке install steam
-        BasePage newBasePage = new BasePage(newPage);
-        newBasePage.getInstallButton().click();
+        HeaderPage headerPage = new HeaderPage(newPage);
+        headerPage.getInstallButton().click();
         newPage.waitForLoadState(LoadState.LOAD);
         DownloadPage downloadPage = new DownloadPage(newPage);
 
