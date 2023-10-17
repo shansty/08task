@@ -28,7 +28,7 @@ public class SteamTest extends BaseTest {
 
         //Клик на игру с самой большой скидкой или самой большой ценой;
         page.waitForLoadState(LoadState.NETWORKIDLE);
-        mainPage.getPriceAndSaleBlock().nth(0).scrollIntoViewIfNeeded();
+        mainPage.getPriceAndSaleBlock().nth(0).waitFor();
         List<String> listOfSales = mainPage.getSalesLocators().allInnerTexts();
         String maxSale = null;
         String salesPrice = null;
