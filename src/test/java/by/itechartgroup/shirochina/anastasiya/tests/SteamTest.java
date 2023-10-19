@@ -139,7 +139,7 @@ public class SteamTest extends BaseTest {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH-mm-ss");
         String formattedTime = formatter.format(timestamp.getTime());
         logger.debug("Indicate path for saving file and name");
-        Path destinationPath = Paths.get("Download", formattedTime + download.suggestedFilename());
+        Path destinationPath = Paths.get(System.getProperty("download.dir"), formattedTime + download.suggestedFilename());
         logger.info("Save file");
         download.saveAs(destinationPath);
     }
