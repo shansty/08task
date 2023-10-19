@@ -37,6 +37,7 @@ public class BaseTest {
     @BeforeAll
     public static void launchBrowser() throws IOException {
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
+        logger = LogManager.getLogger();
         contextLoger = (LoggerContext) LogManager.getContext(false);
         config = contextLoger.getConfiguration();
         loggerConfig = config.getLoggerConfig("by.itechartgroup.shirochina.anastasiya.tests");
@@ -70,7 +71,6 @@ public class BaseTest {
             contextLoger.updateLoggers();
         } else {
         }
-        logger = LogManager.getLogger();
 
         playwright = Playwright.create();
         if (System.getProperty("browser.name").equals("chrome")) {
