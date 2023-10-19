@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.appender.FileAppender;
 import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.junit.jupiter.api.AfterAll;
@@ -38,7 +37,6 @@ public class BaseTest {
     @BeforeAll
     public static void launchBrowser() throws IOException {
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
-        logger = LogManager.getLogger();
         contextLoger = (LoggerContext) LogManager.getContext(false);
         config = contextLoger.getConfiguration();
         loggerConfig = config.getLoggerConfig("by.itechartgroup.shirochina.anastasiya.tests");
@@ -62,11 +60,17 @@ public class BaseTest {
             String formattedTime = formatter.format(timestamp.getTime());
             logFileName = logFileName + formattedTime;
         }
-        FileAppender fa = FileAppender.newBuilder().withName("NewLogToFile").withAppend(append).withFileName(new File(logDirectory, logFileName).toString())
-                .withLayout(PatternLayout.newBuilder().withPattern("%-5p %d  [%t] %C{2} (%F:%L) - %m%n").build())
-                .setConfiguration(contextLoger.getConfiguration()).build();
-        loggerConfig.addAppender(fa, null, null);
-        contextLoger.updateLoggers();
+        boolean enabled = Boolean.parseBoolean(System.getProperty("log.file.enabled"));
+        if(enabled == true) {
+            FileAppender fa = FileAppender.newBuilder().withName("NewLogToFile").withAppend(append).withFileName(String.valueOf(new File(logDirectory, logFileName)))
+                    .withLayout(PatternLayout.newBuilder().withPattern("%-5p %d  [%t] %C{2} (%F:%L) - %m%n").build())
+                    .setConfiguration(contextLoger.getConfiguration()).build();
+            loggerConfig.addAppender(fa, null, null);
+            config.addAppender(fa);
+            contextLoger.updateLoggers();
+        } else {
+        }
+        logger = LogManager.getLogger();
 
         playwright = Playwright.create();
         if (System.getProperty("browser.name").equals("chrome")) {
@@ -79,8 +83,6 @@ public class BaseTest {
             logger.error("Browser name not found");
         }
     }
-
-
     @AfterAll
     public static void closeBrowser() {
         playwright.close();
