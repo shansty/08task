@@ -64,10 +64,8 @@ public class BaseTest {
         }
         FileAppender fa = FileAppender.newBuilder().withName("NewLogToFile").withAppend(append).withFileName(new File(logDirectory, logFileName).toString())
                 .withLayout(PatternLayout.newBuilder().withPattern("%-5p %d  [%t] %C{2} (%F:%L) - %m%n").build())
-                .setConfiguration(config).build();
-        fa.start();
-        config.addAppender(fa);
-        contextLoger.getRootLogger().addAppender(fa);
+                .setConfiguration(contextLoger.getConfiguration()).build();
+        loggerConfig.addAppender(fa, null, null);
         contextLoger.updateLoggers();
 
         playwright = Playwright.create();
