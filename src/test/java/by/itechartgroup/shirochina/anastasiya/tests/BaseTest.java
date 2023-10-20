@@ -31,8 +31,9 @@ public class BaseTest {
         PropertiesHelper.readProperty();
         LoggerHelper.installLogger();
         logger = LogManager.getLogger();
-        if (!BrowserHelper.getBrowserSetting(playwright).equals(null)) {
-            browser = BrowserHelper.getBrowserSetting(playwright);
+        browser = BrowserHelper.getBrowserSetting(playwright);
+        if (!browser.equals(null)) {
+            logger.info("Browser is initialized");
         } else {
             logger.error("Browser name not found");
         }
