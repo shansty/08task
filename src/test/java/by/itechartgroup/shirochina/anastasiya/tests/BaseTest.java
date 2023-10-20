@@ -2,6 +2,7 @@ package by.itechartgroup.shirochina.anastasiya.tests;
 
 import by.itechartgroup.shirochina.anastasiya.pages.BasePage;
 import by.itechartgroup.shirochina.anastasiya.pages.MainPage;
+import by.itechartgroup.shirochina.anastasiya.utils.BrowserHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.LoggerHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.*;
@@ -30,12 +31,8 @@ public class BaseTest {
         PropertiesHelper.readProperty();
         LoggerHelper.installLogger();
         logger = LogManager.getLogger();
-        if (PropertiesHelper.getBrowser().equals("chrome")) {
-            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless()));
-        } else if (PropertiesHelper.getBrowser().equals("firefox")) {
-            browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless()));
-        } else if (PropertiesHelper.getBrowser().equals("webkit")) {
-            browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless()));
+        if (!BrowserHelper.getBrowserSetting(playwright).equals(null)) {
+            browser = BrowserHelper.getBrowserSetting(playwright);
         } else {
             logger.error("Browser name not found");
         }
