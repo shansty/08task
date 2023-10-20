@@ -1,7 +1,12 @@
 package by.itechartgroup.shirochina.anastasiya.tests;
 
 import by.itechartgroup.shirochina.anastasiya.Categories;
-import by.itechartgroup.shirochina.anastasiya.pages.*;
+import by.itechartgroup.shirochina.anastasiya.pages.DownloadPage;
+import by.itechartgroup.shirochina.anastasiya.pages.HeaderPage;
+import by.itechartgroup.shirochina.anastasiya.pages.AgeConfirmationPage;
+import by.itechartgroup.shirochina.anastasiya.pages.GamePage;
+import by.itechartgroup.shirochina.anastasiya.tests.BaseTest;
+import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -10,6 +15,7 @@ import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
@@ -139,7 +145,7 @@ public class SteamTest extends BaseTest {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH-mm-ss");
         String formattedTime = formatter.format(timestamp.getTime());
         logger.debug("Indicate path for saving file and name");
-        Path destinationPath = Paths.get(System.getProperty("download.dir"), formattedTime + download.suggestedFilename());
+        Path destinationPath = Paths.get(PropertiesHelper.getDownloadDir(), formattedTime + download.suggestedFilename());
         logger.info("Save file");
         download.saveAs(destinationPath);
     }
