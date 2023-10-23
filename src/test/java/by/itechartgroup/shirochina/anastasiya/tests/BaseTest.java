@@ -47,6 +47,7 @@ public class BaseTest {
     void createContextAndPage() {
         logger.info("Test started");
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
+        context.setDefaultTimeout(1000000);
         page = context.newPage();
         basePage = new BasePage(page);
         mainPage = new MainPage(page);
