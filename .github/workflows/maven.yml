@@ -2,6 +2,7 @@ name: PlaywrightTests
 on: push
 jobs:
   playwright:
+    timeout-minutes: 60
     name: 'PlaywrightTests'
     runs-on: ubuntu-latest
     container:
