@@ -3,7 +3,7 @@ on: push
 jobs:
   playwright:
     name: 'Playwright Tests'
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
     steps:
