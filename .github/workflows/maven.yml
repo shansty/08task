@@ -13,10 +13,8 @@ jobs:
                 uses: actions/setup-java@v3
                 with:
                   distribution: 'temurin'
-                  java-version: '20'
-              - name: Build & Install
-                run: mvn -B install -D skipTests --no-transfer-progress
+                  java-version: '17'
               - name: Install Playwright
                 run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
-              - name: Run tests
-                run: mvn test
+              - name: Build with Maven
+                run: mvn -B package --file pom.xml
