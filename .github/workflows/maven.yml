@@ -1,22 +1,22 @@
 name: PlaywrightTests
-on: push
+on:
+     push:
+      branches: [ main, master ]
 jobs:
-  playwright:
-    name: 'PlaywrightTests'
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-      - name: Build & Install
-        run: mvn -B install -D skipTests --no-transfer-progress
-      - name: Install Playwright
-        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
-      - name: Run tests
-        run: mvn test
+          test:
+            timeout-minutes: 60
+            runs-on: ubuntu-latest
+            steps:
+              - name: Checkout
+                uses: actions/checkout@v3
+              - name: Set up JDK
+                uses: actions/setup-java@v3
+                with:
+                  distribution: 'temurin'
+                  java-version: '17'
+              - name: Build & Install
+                run: mvn -B install -D skipTests --no-transfer-progress
+              - name: Install Playwright
+                run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+              - name: Run tests
+                run: mvn test
