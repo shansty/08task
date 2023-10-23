@@ -50,6 +50,7 @@ public class LoggerHelper {
             loggerConfig.addAppender(fa, null, null);
             config.addAppender(fa);
             contextLoger.updateLoggers();
+            fa.start();
         } else {
         }
     }
