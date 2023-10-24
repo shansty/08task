@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: AllureReport-$[[ matrix.browser ]]
-          path: allure-report
+          path: target/allure-results/*
 
       - name: Upload Downloaded File
         uses: actions/upload-artifact@v3
