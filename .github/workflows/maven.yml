@@ -27,4 +27,4 @@ jobs:
       - name: Run tests
         run: mvn test
       - name: Run Tests on ${{ matrix.browser }}
-        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="test --browser ${matrix.browser}"
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="test --browser ${{ matrix.browser }}"
