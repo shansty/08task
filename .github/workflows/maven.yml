@@ -28,18 +28,21 @@ jobs:
         run:  mvn test -D exec.args="test --browser ${{ matrix.browser }}"
 
       - name: Upload Log File
+        if: always()
         uses: actions/upload-artifact@v3
         with:
             name: Log ${{ matrix.browser }}
             path: log/*
 
       - name: Upload Test Report
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: AllureReport ${{ matrix.browser }}
           path: target/allure-results/*
 
       - name: Upload Downloaded File
+        if: always()
         uses: actions/upload-artifact@v3
         with:
             name: Download ${{ matrix.browser }}
