@@ -22,6 +22,7 @@ jobs:
   playwright:
     name: 'Playwright Tests'
     runs-on: ubuntu-latest
+    if:  ${{ inputs.browser }}
     strategy:
       matrix:
         browser: [ chromium, firefox, webkit ]
@@ -36,7 +37,20 @@ jobs:
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
+        run: |
+            if [ -z "${{ github.event.inputs.browser }}" ]; then
+              mvn test -D exec.args="test --browser ${{ matrix.browser }}"
+            else
+              mvn test -D exec.args="test --browser ${{ github.event.inputs.browser }}"
+            fi
+          
+          env:
+            BROWSER: ${{ github.event.inputs.browser }}
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.browser != ''
+
+      - name: Run tests on multiple browsers
         run: mvn test -D exec.args="test --browser ${{ matrix.browser }}"
+        if: github.event_name != 'workflow_dispatch' || (github.event_name == 'workflow_dispatch' && github.event.inputs.browser == '')
 
       - name: Upload Log File
         if: always()
