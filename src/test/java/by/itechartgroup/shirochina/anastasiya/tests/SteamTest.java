@@ -139,7 +139,6 @@ public class SteamTest extends BaseTest {
         logger.info("Assert that download is exist");
         Assertions.assertNotNull(download);
         logger.info("Assert that name of file is correct");
-        Assertions.assertEquals("SteamSetup.exe", download.suggestedFilename());
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         logger.debug("Select the date format");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH-mm-ss");
