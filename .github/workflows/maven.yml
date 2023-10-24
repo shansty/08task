@@ -1,6 +1,11 @@
 name: Playwright Tests
 on:
   workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Browser to run the tests on'
+        required: false
+        default: 'chrome'
   push:
     branches: [ main, master ]
   pull_request:
