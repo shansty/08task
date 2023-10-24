@@ -25,7 +25,7 @@ jobs:
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
-        run:  mvn test -D exec.args="test --browser ${{ matrix.browser }}"
+        run:  mvn test -D exec.args="test --browser ${{ matrix.browser }}
 
       - name: Upload Log File
         uses: actions/upload-artifact@v3
@@ -36,11 +36,11 @@ jobs:
       - name: Upload Test Report
         uses: actions/upload-artifact@v3
         with:
-          name: AllureReport-$[[ matrix.browser ]]
+          name: AllureReport
           path: target/allure-results/*
 
       - name: Upload Downloaded File
         uses: actions/upload-artifact@v3
         with:
-            name: Download-$[[ matrix.browser ]]
+            name: Download
             path: Download/*
