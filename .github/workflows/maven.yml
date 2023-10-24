@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [ chromium, firefox, webkit ]
+        browser: ${{ github.event.inputs.browser && [github.event.inputs.browser] || [ chromium, firefox, webkit ] }}
     container:
       image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
     steps:
