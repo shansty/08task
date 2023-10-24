@@ -6,10 +6,11 @@ on:
         description: 'Browser to run the tests on'
         required: false
         default: 'chromium'
+        type: choice
         options:
-          - 'chromium'
-          - 'firefox'
-          - 'firefox'
+            - chromium
+            - firefox
+            - webkit
   push:
     branches: [ main, master ]
   pull_request:
