@@ -17,6 +17,9 @@ jobs:
   playwright:
     name: 'Playwright Tests'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [ chromium, firefox, webkit ]
     container:
       image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
     steps:
@@ -28,7 +31,8 @@ jobs:
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
-        run:  mvn test -D exec.args="test --browser ${{ github.event.inputs.browser || matrix.browser }}"
+        run: mvn test -D exec.args="test --browser ${{ github.event.inputs.browser || matrix.browser }}"
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.browser
 
       - name: Upload Log File
         if: always()
