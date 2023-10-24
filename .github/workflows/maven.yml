@@ -30,17 +30,17 @@ jobs:
       - name: Upload Log File
         uses: actions/upload-artifact@v3
         with:
-            name: Log ${{ matrix.browser }}"
+            name: Log ${{ matrix.browser }}
             path: log/*
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v3
         with:
-          name: AllureReport ${{ matrix.browser }}"
+          name: AllureReport ${{ matrix.browser }}
           path: target/allure-results/*
 
       - name: Upload Downloaded File
         uses: actions/upload-artifact@v3
         with:
-            name: Download ${{ matrix.browser }}"
+            name: Download ${{ matrix.browser }}
             path: Download/*
