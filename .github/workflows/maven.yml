@@ -41,6 +41,7 @@ jobs:
             mvn test -D exec.args="test --browser ${{ matrix.browser }}"
           else
             mvn test -D exec.args="test --browser ${{ github.event.inputs.browser }}"
+          fi
 
       - name: Upload Log File
         if: always()
