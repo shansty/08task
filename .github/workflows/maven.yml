@@ -30,14 +30,14 @@ jobs:
       - name: Upload Log File
         uses: actions/upload-artifact@v3
         with:
-            name: Log-$[[ matrix.browser ]]
-            path: log.txt
+            name: log
+            path: log/log.txt
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v3
         with:
-            name: AllureReport-$[[ matrix.browser ]]
-            path: allure-report
+          name: AllureReport-$[[ matrix.browser ]]
+          path: allure-report
 
       - name: Upload Downloaded File
         uses: actions/upload-artifact@v3
