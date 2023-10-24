@@ -30,8 +30,8 @@ jobs:
       - name: Upload Log File
         uses: actions/upload-artifact@v3
         with:
-            name: log4551
-            path: log/log
+            name: Log
+            path: log/*
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v3
