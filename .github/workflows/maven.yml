@@ -22,13 +22,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Install Dependencies
-        run: |
-            npm uninstall playwright
-            npm install -D @playwright/test
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
         run: mvn test
       - name: Run Tests on ${{ matrix.browser }}
-        run: npx playwright test --browser ${{ matrix.browser }}"
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="test --browser ${{ matrix.browser }}"
