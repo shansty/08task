@@ -7,7 +7,7 @@ public class DownloadPage extends BasePage {
     private final Locator installButton;
     public DownloadPage(Page page) {
         super(page);
-        this.installButton = page.locator("//div[@class='about_install win ']/a");
+        this.installButton = page.locator("//div[contains(@class, 'about_install')]/a");
     }
     public Locator getInstallButton() {
         return installButton;

@@ -133,7 +133,6 @@ public class SteamTest extends BaseTest {
 
         //скачиваем файл и изменяем его имя
         logger.info("Wait for download game");
-        System.out.println(newPage.content());
         Download download = newPage.waitForDownload(() -> {
             downloadPage.getInstallButton().nth(0).click();
         });
