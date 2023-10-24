@@ -4,8 +4,12 @@ on:
     inputs:
       browser:
         description: 'Browser to run the tests on'
-        required: true
-        default: 'chrome'
+        required: false
+        default: 'chromium'
+        options:
+          - 'chromium'
+          - 'firefox'
+          - 'firefox'
   push:
     branches: [ main, master ]
   pull_request:
@@ -19,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [ ${ { github.event.inputs.browser } }, firefox, webkit ]
+        browser: [ chromium, firefox, webkit ]
     container:
       image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
     steps:
