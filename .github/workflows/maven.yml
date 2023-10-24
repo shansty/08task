@@ -4,7 +4,7 @@ on:
     inputs:
       browser:
         description: 'Browser to run the tests on'
-        required: false
+        required: true
         default: 'chrome'
         options:
           - 'chrome'
