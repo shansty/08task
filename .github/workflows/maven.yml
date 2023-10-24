@@ -42,7 +42,8 @@ jobs:
           else
             mvn test -D exec.args="test --browser ${{ github.event.inputs.browser }}"
           fi
-
+        env:
+          BROWSER: ${{ github.event.inputs.browser }}
       - name: Upload Log File
         if: always()
         uses: actions/upload-artifact@v3
