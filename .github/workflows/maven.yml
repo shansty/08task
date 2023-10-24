@@ -5,7 +5,7 @@ on:
       browser:
         description: 'Browser to run the tests on'
         required: false
-        default: ''
+        default: 'chrome'
   push:
     branches: [ main, master ]
   pull_request:
@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
+    strategy:
+      matrix:
+        browser: [ chromium, firefox, webkit ]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
@@ -31,31 +34,30 @@ jobs:
       - name: Run tests
         run: |
           if [ -z "${{ github.event.inputs.browser }}" ]; then
-            mvn test -D exec.args="test --browser chromium"
-            mvn test -D exec.args="test --browser firefox"
-            mvn test -D exec.args="test --browser webkit"
+            mvn test -D exec.args="test --browser ${{ matrix.browser }}"
           else
             mvn test -D exec.args="test --browser ${{ github.event.inputs.browser }}"
           fi
-        shell: bash
+        env:
+          BROWSER: ${{ github.event.inputs.browser }}
 
       - name: Upload Log File
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: Log ${{ github.event.inputs.browser || matrix.browser }}
+          name: Log ${{ env.BROWSER || matrix.browser }}
           path: log/*
 
       - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: AllureReport ${{ github.event.inputs.browser || matrix.browser }}
+          name: AllureReport ${{ env.BROWSER || matrix.browser }}
           path: target/allure-results/*
 
       - name: Upload Downloaded File
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: Download ${{ github.event.inputs.browser || matrix.browser }}
+          name: Download ${{ env.BROWSER || matrix.browser }}
           path: Download/*
