@@ -64,7 +64,7 @@ public class SteamTest extends BaseTest {
             Integer max = listOfSalesInt.stream().max(Integer::compareTo).get();
             maxSale = "-" + String.valueOf(max) + "%";
             logger.debug("Max sale is " + maxSale);
-            salesPrice = mainPage.getPriceLocatorBySale(max).textContent();
+            salesPrice = mainPage.getPriceLocatorBySale(max).nth(0).textContent();
             logger.debug("Price on max sale is " + salesPrice);
             logger.info("Click on game with max sale");
             newPage = context.waitForPage(() -> {
