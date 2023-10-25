@@ -7,6 +7,7 @@ import by.itechartgroup.shirochina.anastasiya.pages.AgeConfirmationPage;
 import by.itechartgroup.shirochina.anastasiya.pages.GamePage;
 import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.Download;
+import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
@@ -94,7 +95,9 @@ public class SteamTest extends BaseTest {
         //обработка возраста, если она есть
         AgeConfirmationPage ageConfirmationPage = new AgeConfirmationPage(newPage);
         logger.debug("Check is game need age confirmation");
-        if (ageConfirmationPage.getNotificationText().isEnabled()) {
+        newPage.waitForLoadState(LoadState.NETWORKIDLE);
+        System.out.println(ageConfirmationPage.getNotificationText().count());
+        if (ageConfirmationPage.getNotificationText().count()>0) {
             logger.debug("Confirmation is need");
             logger.info("Select day of birth");
             ageConfirmationPage.getDayOfBirthSelect().selectOption("16");
