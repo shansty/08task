@@ -54,6 +54,7 @@ public class BaseTest {
     void createContextAndPage() {
         logger.info("Test started");
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
+        context.setDefaultTimeout(1000*60*2);
         context.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true).setSources(true));
         page = context.newPage();
         basePage = new BasePage(page);
