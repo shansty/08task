@@ -112,7 +112,7 @@ public class SteamTest extends BaseTest {
         logger.debug("Check is max sake is  exist");
         if (maxSale != null) {
             logger.debug("Max sale is exist");
-            gamePage.getSaleLocatorByDiscount(maxSale).nth(0).scrollIntoViewIfNeeded();
+            gamePage.getSaleLocatorByDiscount(maxSale).first().scrollIntoViewIfNeeded();
             logger.info("Assert that sale is correct");
             assertThat(gamePage.getSaleLocatorByDiscount(maxSale).nth(0)).containsText(maxSale);
             logger.info("Assert that price on sale is correct");
