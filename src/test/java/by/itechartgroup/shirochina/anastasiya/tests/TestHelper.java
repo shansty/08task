@@ -22,4 +22,5 @@ public class TestHelper {
     public static void setPage(Page page) {
         TestHelper.page = page;
     }
+
 }

@@ -17,6 +17,7 @@ public class LoggerHelper {
     private static LoggerContext contextLoger;
     private static Configuration config;
     private static LoggerConfig loggerConfig;
+    private static String logFileName;
 
     public static void installLogger() {
         contextLoger = (LoggerContext) LogManager.getContext(false);
@@ -24,7 +25,6 @@ public class LoggerHelper {
         loggerConfig = config.getLoggerConfig("by.itechartgroup.shirochina.anastasiya.tests");
         loggerConfig.setLevel(PropertiesHelper.getLogLevel());
         String logDirectory;
-        String logFileName;
         if (!PropertiesHelper.getDirName().isEmpty()) {
             logDirectory = PropertiesHelper.getDirName();
         } else {
@@ -32,8 +32,10 @@ public class LoggerHelper {
         }
         if (!PropertiesHelper.getFileName().isEmpty()) {
             logFileName = PropertiesHelper.getFileName();
+            setLogFileName(logFileName);
         } else {
             logFileName = "testSteamWeb.log";
+            setLogFileName(logFileName);
         }
         boolean append = PropertiesHelper.getPreserve();
         if (append == true) {
@@ -41,6 +43,7 @@ public class LoggerHelper {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH-mm-ss");
             String formattedTime = formatter.format(timestamp.getTime());
             logFileName = logFileName + formattedTime;
+            setLogFileName(logFileName);
         }
         boolean enabled = PropertiesHelper.getEnabled();
         if (enabled == true) {
@@ -53,5 +56,12 @@ public class LoggerHelper {
             fa.start();
         } else {
         }
+    }
+    public static String getLogFileName() {
+        return logFileName;
+    }
+
+    public static void setLogFileName(String logFileName) {
+        LoggerHelper.logFileName = logFileName;
     }
 }

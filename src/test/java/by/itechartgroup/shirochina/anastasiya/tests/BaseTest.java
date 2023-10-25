@@ -8,18 +8,18 @@ import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.IOException;
 
+
+@ExtendWith(MyTestWatcher.class)
 public class BaseTest {
     static Playwright playwright;
     static Browser browser;
     static Logger logger;
-    BrowserContext context;
+    static BrowserContext context;
     Page page;
     MainPage categoriesPage;
     BasePage basePage;
@@ -40,6 +40,7 @@ public class BaseTest {
     }
     @AfterAll
     public static void closeBrowser() {
+        context.close();
         playwright.close();
     }
 
@@ -47,15 +48,17 @@ public class BaseTest {
     void createContextAndPage() {
         logger.info("Test started");
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
+        context.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true).setSources(true));
         page = context.newPage();
         basePage = new BasePage(page);
         mainPage = new MainPage(page);
         categoriesPage = new MainPage(page);
+        TestHelper.setContext(context);
+        TestHelper.setPage(page);
     }
 
     @AfterEach
     void closeContext() {
         logger.info("Test ended");
-        context.close();
     }
 }

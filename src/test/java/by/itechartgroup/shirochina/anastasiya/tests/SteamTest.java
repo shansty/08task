@@ -40,7 +40,6 @@ public class SteamTest extends BaseTest {
         mainPage.getGameBlock().scrollIntoViewIfNeeded();
         logger.info("Click on New and Trending button");
         mainPage.getNewAndTrendingButton().click();
-        Assertions.assertFalse(true);
 
         //Клик на игру с самой большой скидкой или самой большой ценой;
         logger.trace("wait for load state");
