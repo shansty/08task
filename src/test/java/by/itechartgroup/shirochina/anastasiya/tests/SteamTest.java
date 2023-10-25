@@ -60,6 +60,7 @@ public class SteamTest extends BaseTest {
                     .collect(Collectors.toList());
             List<Integer> listOfSalesInt = listOfSalesModified.stream().map(x -> Integer.parseInt(x))
                     .collect(Collectors.toList());
+            System.out.println(listOfSalesInt);
             logger.debug("Find max sale from list");
             Integer max = listOfSalesInt.stream().max(Integer::compareTo).get();
             maxSale = "-" + String.valueOf(max) + "%";
