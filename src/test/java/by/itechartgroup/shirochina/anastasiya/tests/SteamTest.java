@@ -94,7 +94,7 @@ public class SteamTest extends BaseTest {
         //обработка возраста, если она есть
         AgeConfirmationPage ageConfirmationPage = new AgeConfirmationPage(newPage);
         logger.debug("Check is game need age confirmation");
-        if (ageConfirmationPage.getNotificationText().isVisible()) {
+        if (ageConfirmationPage.getNotificationText().isEnabled()) {
             logger.debug("Confirmation is need");
             logger.info("Select day of birth");
             ageConfirmationPage.getDayOfBirthSelect().selectOption("16");
@@ -110,7 +110,6 @@ public class SteamTest extends BaseTest {
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
         logger.debug("Check is max sake is  exist");
-        System.out.println(page.content());
         if (maxSale != null) {
             logger.debug("Max sale is exist");
 //            List<Locator> listlocators = gamePage.getSaleLocatorByDiscount(maxSale).all();

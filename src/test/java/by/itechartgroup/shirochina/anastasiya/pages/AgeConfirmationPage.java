@@ -12,7 +12,7 @@ public class AgeConfirmationPage extends BasePage {
 
     public AgeConfirmationPage(Page page) {
         super(page);
-        this.notificationText = page.locator("//div[text() = 'Please enter your birth date to continue:']");
+        this.notificationText = page.locator("//h2[contains(text(), 'This game may contain content not appropriate for all ages')]");
         this.dayOfBirthSelect = page.locator("//select[@name = 'ageDay']");
         this.monthOfBirthSelect = page.locator("//select[@name = 'ageMonth']");
         this.yearOfBirthSelect = page.locator("//select[@name = 'ageYear']");

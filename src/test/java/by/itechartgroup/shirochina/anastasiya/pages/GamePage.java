@@ -13,8 +13,8 @@ public class GamePage extends BasePage{
         return page.locator("//div[@class='discount_block game_purchase_discount']//div[@class = 'discount_pct' and contains(text()," + sale + ")]");
     }
     public Locator getPriceLocatorBySalesPrice(String salesPrice) {
-        salesPrice = salesPrice.replaceAll("[^0-9.]+", "");
-        return page.locator("//div[@class='discount_block game_purchase_discount']//div[@class = 'discount_final_price' and contains(text()," + salesPrice + ")]");
+        salesPrice = salesPrice.replaceAll("[^0-9.,]+", "");
+        return page.locator("//div[@class='discount_block game_purchase_discount']//div[@class = 'discount_final_price' and contains(text(),'" + salesPrice + "')]");
     }
     public Locator getPriceLocatorByPrice(String price) {
         price = price.replaceAll("[^0-9.]+", "");
