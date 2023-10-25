@@ -118,6 +118,7 @@ public class SteamTest extends BaseTest {
 //            System.out.println(listlocators.size());
 //            Locator avggawlsvlws = gamePage.getSaleLocatorByDiscount(maxSale).nth(0);
 //            System.out.println(avggawlsvlws.textContent());
+            gamePage.getSaleLocatorByDiscount(maxSale).nth(0).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
             logger.info("Assert that sale is correct");
             assertThat(gamePage.getSaleLocatorByDiscount(maxSale).nth(0)).containsText(maxSale);
             logger.info("Assert that price on sale is correct");
