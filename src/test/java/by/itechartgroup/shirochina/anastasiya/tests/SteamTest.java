@@ -5,7 +5,6 @@ import by.itechartgroup.shirochina.anastasiya.pages.DownloadPage;
 import by.itechartgroup.shirochina.anastasiya.pages.HeaderPage;
 import by.itechartgroup.shirochina.anastasiya.pages.AgeConfirmationPage;
 import by.itechartgroup.shirochina.anastasiya.pages.GamePage;
-import by.itechartgroup.shirochina.anastasiya.tests.BaseTest;
 import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Locator;
@@ -14,8 +13,8 @@ import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
@@ -24,7 +23,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-
 public class SteamTest extends BaseTest {
     @Test
     public void testSteamWeb() {
@@ -42,6 +40,7 @@ public class SteamTest extends BaseTest {
         mainPage.getGameBlock().scrollIntoViewIfNeeded();
         logger.info("Click on New and Trending button");
         mainPage.getNewAndTrendingButton().click();
+        Assertions.assertFalse(true);
 
         //Клик на игру с самой большой скидкой или самой большой ценой;
         logger.trace("wait for load state");
@@ -89,6 +88,7 @@ public class SteamTest extends BaseTest {
             newPage = context.waitForPage(() -> {
                 mainPage.getLinkLocatorByPrice(max).nth(0).click();
             });
+            TestHelper.setPage(newPage);
         }
 
         //обработка возраста, если она есть
@@ -105,6 +105,7 @@ public class SteamTest extends BaseTest {
             logger.info("Click confirm button");
             ageConfirmationPage.getConfirmButton().click();
             newPage.waitForLoadState(LoadState.LOAD);
+            TestHelper.setPage(newPage);
         }
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
