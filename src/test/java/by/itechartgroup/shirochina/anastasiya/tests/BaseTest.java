@@ -45,6 +45,7 @@ public class BaseTest {
     }
     @AfterAll
     public static void closeBrowser() {
+        context.tracing().stop();
         context.close();
         playwright.close();
     }
@@ -63,11 +64,7 @@ public class BaseTest {
     }
 
     @AfterEach
-    void closeContext() throws IOException {
+    void closeContext() {
         logger.info("Test ended");
-        String traceFileName = "build/trace.zip";
-        Path tracePath = Paths.get(traceFileName);
-        context.tracing().stop(new Tracing.StopOptions().setPath(tracePath));
-        Allure.addAttachment("trace.zip", new ByteArrayInputStream(Files.readAllBytes(tracePath)));
     }
 }
