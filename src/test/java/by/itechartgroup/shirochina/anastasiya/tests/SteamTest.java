@@ -110,6 +110,7 @@ public class SteamTest extends BaseTest {
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
         logger.debug("Check is max sake is  exist");
+        System.out.println(page.content());
         if (maxSale != null) {
             logger.debug("Max sale is exist");
 //            List<Locator> listlocators = gamePage.getSaleLocatorByDiscount(maxSale).all();
