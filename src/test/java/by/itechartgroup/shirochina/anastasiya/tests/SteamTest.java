@@ -7,14 +7,12 @@ import by.itechartgroup.shirochina.anastasiya.pages.AgeConfirmationPage;
 import by.itechartgroup.shirochina.anastasiya.pages.GamePage;
 import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.Download;
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -54,16 +52,16 @@ public class SteamTest extends BaseTest {
         String maxPrice = null;
         Page newPage;
         logger.debug("Check is list with sales greater than zero");
-        if (listOfSales.size() > 0) {
+        if (!listOfSales.isEmpty()) {
             logger.debug("list with sales size is " + listOfSales.size());
             List<String> listOfSalesModified = listOfSales.stream()
                     .map(s -> s.replaceAll("[^0-9]", ""))
                     .collect(Collectors.toList());
-            List<Integer> listOfSalesInt = listOfSalesModified.stream().map(x -> Integer.parseInt(x))
+            List<Integer> listOfSalesInt = listOfSalesModified.stream().map(Integer::parseInt)
                     .collect(Collectors.toList());
             logger.debug("Find max sale from list");
-            Integer max = listOfSalesInt.stream().max(Integer::compareTo).get();
-            maxSale = "-" + String.valueOf(max) + "%";
+            Integer max = listOfSalesInt.stream().max(Integer::compareTo).orElse(0);
+            maxSale = "-" + max + "%";
             logger.debug("Max sale is " + maxSale);
             salesPrice = mainPage.getPriceLocatorBySale(max).nth(0).textContent();
             logger.debug("Price on max sale is " + salesPrice);
@@ -78,10 +76,10 @@ public class SteamTest extends BaseTest {
             List<String> listOfPricesModified = listOfPrices.stream()
                     .map(s -> s.replaceAll("[^0-9.]", "")).filter(x->!x.isEmpty())
                     .collect(Collectors.toList());
-            List<Double> listOfPricesDouble = listOfPricesModified.stream().map(x -> Double.parseDouble(x))
+            List<Double> listOfPricesDouble = listOfPricesModified.stream().map(Double::parseDouble)
                     .collect(Collectors.toList());
             logger.debug("Find max price from list");
-            Double max = listOfPricesDouble.stream().max(Double::compareTo).get();
+            double max = listOfPricesDouble.stream().max(Double::compareTo).orElse(0.0);
             maxPrice = mainPage.getPriceLocatorByPrice(max).textContent();
             logger.debug("Max price is " + maxPrice);
             logger.info("Click on game with max price");
@@ -94,7 +92,7 @@ public class SteamTest extends BaseTest {
         //обработка возраста, если она есть
         AgeConfirmationPage ageConfirmationPage = new AgeConfirmationPage(newPage);
         logger.debug("Check is game need age confirmation");
-        newPage.waitForLoadState(LoadState.NETWORKIDLE);
+        newPage.waitForLoadState(LoadState.DOMCONTENTLOADED);
         if (ageConfirmationPage.getNotificationText().count()>0) {
             logger.debug("Confirmation is need");
             logger.info("Select day of birth");
@@ -106,7 +104,6 @@ public class SteamTest extends BaseTest {
             logger.info("Click confirm button");
             ageConfirmationPage.getConfirmButton().click();
             newPage.waitForLoadState(LoadState.LOAD);
-            TestHelper.setPage(newPage);
         }
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);

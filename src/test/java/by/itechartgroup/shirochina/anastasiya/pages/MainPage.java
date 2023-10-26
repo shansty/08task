@@ -9,8 +9,6 @@ public class MainPage extends BasePage {
     private final Locator newAndTrendingButton;
     private final Locator salesLocators;
     private final Locator pricesLocators;
-    private String categoriesButton = "//div[@id='genre_tab']";
-    private String url = "https://store.steampowered.com/";
     private final Locator gameBlock;
     private final Locator priceAndSaleBlock;
 
@@ -23,9 +21,11 @@ public class MainPage extends BasePage {
         this.priceAndSaleBlock = page.locator("//div[contains(@class, 'salepreviewwidgets_StoreSalePriceActionWidgetContainer')]");
     }
     public void hoverToCategoriesButton() {
+        String categoriesButton = "//div[@id='genre_tab']";
         page.hover(categoriesButton);
     }
     public void getBaseUrl() {
+        String url = "https://store.steampowered.com/";
         page.navigate(url);
     }
 

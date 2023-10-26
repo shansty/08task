@@ -7,7 +7,6 @@ import com.microsoft.playwright.Tracing;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,6 +17,7 @@ import java.text.SimpleDateFormat;
 public class MyTestWatcher implements TestWatcher {
     @Override
     public void testFailed(ExtensionContext extensionContext, Throwable cause) {
+        System.out.println("Debug");
         BrowserContext browserContext = TestHelper.getContext();
         Page page = TestHelper.getPage();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -31,6 +31,7 @@ public class MyTestWatcher implements TestWatcher {
         String traceFileName = "build/trace.zip";
         Path tracePath = Paths.get(traceFileName);
         browserContext.tracing().stop(new Tracing.StopOptions().setPath(tracePath));
+
         try {
             Allure.addAttachment("trace.zip", new ByteArrayInputStream(Files.readAllBytes(tracePath)));
         } catch (IOException e) {
@@ -43,5 +44,6 @@ public class MyTestWatcher implements TestWatcher {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        browserContext.close();
     }
 }

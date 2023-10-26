@@ -6,17 +6,11 @@ import by.itechartgroup.shirochina.anastasiya.utils.BrowserHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.LoggerHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.*;
-import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 
 @ExtendWith(MyTestWatcher.class)
@@ -37,7 +31,7 @@ public class BaseTest {
         LoggerHelper.installLogger();
         logger = LogManager.getLogger();
         browser = BrowserHelper.getBrowserSetting(playwright);
-        if (!browser.equals(null)) {
+        if (browser != null) {
             logger.info("Browser is initialized");
         } else {
             logger.error("Browser name not found");
@@ -45,8 +39,6 @@ public class BaseTest {
     }
     @AfterAll
     public static void closeBrowser() {
-        context.tracing().stop();
-        context.close();
         playwright.close();
     }
 
