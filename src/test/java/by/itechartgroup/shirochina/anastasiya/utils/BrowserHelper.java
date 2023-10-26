@@ -9,14 +9,15 @@ public class BrowserHelper {
     public static Browser getBrowserSetting(Playwright playwright) {
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless());
         String browserName = PropertiesHelper.getBrowser();
-        if (browserName.equals("chrome")) {
-            return playwright.chromium().launch(launchOptions);
-        } else if (browserName.equals("firefox")) {
-            return playwright.firefox().launch(launchOptions);
-        } else if (browserName.equals("webkit")) {
-            return playwright.webkit().launch(launchOptions);
-        } else {
-            return null;
+        switch (browserName) {
+            case "chrome":
+                return playwright.chromium().launch(launchOptions);
+            case "firefox":
+                return playwright.firefox().launch(launchOptions);
+            case "webkit":
+                return playwright.webkit().launch(launchOptions);
+            default:
+                return null;
         }
     }
 }
