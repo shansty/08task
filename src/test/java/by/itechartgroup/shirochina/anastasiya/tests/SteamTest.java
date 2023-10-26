@@ -33,7 +33,7 @@ public class SteamTest extends BaseTest {
         mainPage.clickOnCategory(Categories.ACTION);
         logger.debug("Wait for game block");
         mainPage.getGameBlock().waitFor();
-        logger.trace("wait for load state");
+        logger.trace("Wait for load state");
         page.waitForLoadState();
         logger.debug("Scroll to game block");
         mainPage.getGameBlock().scrollIntoViewIfNeeded();
@@ -41,7 +41,7 @@ public class SteamTest extends BaseTest {
         mainPage.getNewAndTrendingButton().click();
 
         //Клик на игру с самой большой скидкой или самой большой ценой;
-        logger.trace("wait for load state");
+        logger.trace("Wait for load state");
         page.waitForLoadState(LoadState.NETWORKIDLE);
         logger.debug("Wait for price and sale block to be visible");
         mainPage.getPriceAndSaleBlock().nth(0).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
@@ -107,7 +107,7 @@ public class SteamTest extends BaseTest {
         }
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
-        logger.debug("Check is max sake is  exist");
+        logger.debug("Check is max sale is exist");
         if (maxSale != null) {
             logger.debug("Max sale is exist");
             newPage.waitForLoadState(LoadState.LOAD);

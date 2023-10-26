@@ -3,6 +3,7 @@ package by.itechartgroup.shirochina.anastasiya.tests;
 import by.itechartgroup.shirochina.anastasiya.utils.LoggerHelper;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.Tracing;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -13,30 +14,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 public class MyTestWatcher implements TestWatcher {
+    private BrowserContext browserContext;
+    private Page page;
+    private Playwright playwright;
     @Override
     public void testFailed(ExtensionContext extensionContext, Throwable cause) {
-        System.out.println("Debug");
-        BrowserContext browserContext = TestHelper.getContext();
-        Page page = TestHelper.getPage();
+        initializeVariable();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SimpleDateFormat formatter = new SimpleDateFormat("HH-mm-ss");
         String time = formatter.format(timestamp.getTime());
-
         byte[] screenshot = page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("build/allure-results/screenshot_"
                         + time + "screenshot.png")).setFullPage(true));
         Allure.addAttachment(time, new ByteArrayInputStream(screenshot));
 
-        String traceFileName = "build/trace.zip";
-        Path tracePath = Paths.get(traceFileName);
-        browserContext.tracing().stop(new Tracing.StopOptions().setPath(tracePath));
-
-        try {
-            Allure.addAttachment("trace.zip", new ByteArrayInputStream(Files.readAllBytes(tracePath)));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        addTraceToAllure();
 
         File file = new File("log/" + LoggerHelper.getLogFileName());
         try {
@@ -44,6 +38,44 @@ public class MyTestWatcher implements TestWatcher {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        browserContext.close();
+        closeBrowserAndPlaywright();
     }
+    @Override
+    public void testSuccessful(ExtensionContext context) {
+        initializeVariable();
+        addTraceToAllure();
+        closeBrowserAndPlaywright();
+    }
+    @Override
+    public void testAborted(ExtensionContext context, Throwable cause) {
+        initializeVariable();
+        addTraceToAllure();
+        closeBrowserAndPlaywright();
+    }
+    @Override
+    public void testDisabled(ExtensionContext context, Optional<String> reason) {
+        initializeVariable();
+        addTraceToAllure();
+        closeBrowserAndPlaywright();
+    }
+    private void initializeVariable() {
+        this.browserContext = TestHelper.getContext();
+        this.page = TestHelper.getPage();
+        this.playwright = TestHelper.getPlaywright();
+    }
+    private void closeBrowserAndPlaywright() {
+        browserContext.close();
+        playwright.close();
+    }
+    private void addTraceToAllure() {
+        String traceFileName = "build/trace.zip";
+        Path tracePath = Paths.get(traceFileName);
+        browserContext.tracing().stop(new Tracing.StopOptions().setPath(tracePath));
+        try {
+            Allure.addAttachment("trace.zip", new ByteArrayInputStream(Files.readAllBytes(tracePath)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

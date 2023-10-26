@@ -2,10 +2,12 @@ package by.itechartgroup.shirochina.anastasiya.tests;
 
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
 
 public class TestHelper {
     private static BrowserContext context;
     private static Page page;
+    private static Playwright playwright;
 
     public static BrowserContext getContext() {
         return context;
@@ -23,4 +25,11 @@ public class TestHelper {
         TestHelper.page = page;
     }
 
+    public static Playwright getPlaywright() {
+        return playwright;
+    }
+
+    public static void setPlaywright(Playwright playwright) {
+        TestHelper.playwright = playwright;
+    }
 }

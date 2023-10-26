@@ -27,6 +27,7 @@ public class BaseTest {
     @BeforeAll
     public static void launchBrowser() throws IOException {
         playwright = Playwright.create();
+        TestHelper.setPlaywright(playwright);
         PropertiesHelper.readProperty();
         LoggerHelper.installLogger();
         logger = LogManager.getLogger();
@@ -36,10 +37,6 @@ public class BaseTest {
         } else {
             logger.error("Browser name not found");
         }
-    }
-    @AfterAll
-    public static void closeBrowser() {
-        playwright.close();
     }
 
     @BeforeEach
