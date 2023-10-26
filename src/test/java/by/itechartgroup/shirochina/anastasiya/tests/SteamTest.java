@@ -86,8 +86,8 @@ public class SteamTest extends BaseTest {
             newPage = context.waitForPage(() -> {
                 mainPage.getLinkLocatorByPrice(max).nth(0).click();
             });
-            TestHelper.setPage(newPage);
         }
+        TestHelper.setPage(newPage);
 
         //обработка возраста, если она есть
         AgeConfirmationPage ageConfirmationPage = new AgeConfirmationPage(newPage);
