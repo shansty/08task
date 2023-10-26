@@ -7,7 +7,7 @@ public enum Categories {
     ADVENTURE ("Adventure"),
     SIMULATION ("Simulation"),
     SPORTS_AND_RACING ("Sports & Racing");
-    private String value;
+    private final String value;
     Categories(String value) {
         this.value = value;
     }
