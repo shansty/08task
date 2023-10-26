@@ -61,7 +61,6 @@ public class SteamTest extends BaseTest {
                     .collect(Collectors.toList());
             List<Integer> listOfSalesInt = listOfSalesModified.stream().map(x -> Integer.parseInt(x))
                     .collect(Collectors.toList());
-            System.out.println(listOfSalesInt);
             logger.debug("Find max sale from list");
             Integer max = listOfSalesInt.stream().max(Integer::compareTo).get();
             maxSale = "-" + String.valueOf(max) + "%";
@@ -96,7 +95,6 @@ public class SteamTest extends BaseTest {
         AgeConfirmationPage ageConfirmationPage = new AgeConfirmationPage(newPage);
         logger.debug("Check is game need age confirmation");
         newPage.waitForLoadState(LoadState.NETWORKIDLE);
-        System.out.println(ageConfirmationPage.getNotificationText().count());
         if (ageConfirmationPage.getNotificationText().count()>0) {
             logger.debug("Confirmation is need");
             logger.info("Select day of birth");
