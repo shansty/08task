@@ -148,4 +148,21 @@ public class SteamTest extends BaseTest {
         logger.info("Save file");
         download.saveAs(destinationPath);
     }
+    @Test
+    public void secondTest() {
+        logger.info("Open base url");
+        mainPage.getBaseUrl();
+        logger.info("Hover to category");
+        mainPage.hoverToCategoriesButton();
+        logger.info("Click on category");
+        mainPage.clickOnCategory(Categories.ACTION);
+        logger.debug("Wait for game block");
+        mainPage.getGameBlock().waitFor();
+        logger.trace("Wait for load state");
+        page.waitForLoadState();
+        logger.debug("Scroll to game block");
+        mainPage.getGameBlock().scrollIntoViewIfNeeded();
+        logger.info("Click on New and Trending button");
+        mainPage.getNewAndTrendingButton().click();
+    }
 }

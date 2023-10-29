@@ -3,7 +3,6 @@ package by.itechartgroup.shirochina.anastasiya.tests;
 import by.itechartgroup.shirochina.anastasiya.utils.LoggerHelper;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.Tracing;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -19,7 +18,6 @@ import java.util.Optional;
 public class MyTestWatcher implements TestWatcher {
     private BrowserContext browserContext;
     private Page page;
-    private Playwright playwright;
     @Override
     public void testFailed(ExtensionContext extensionContext, Throwable cause) {
         initializeVariable();
@@ -61,11 +59,9 @@ public class MyTestWatcher implements TestWatcher {
     private void initializeVariable() {
         this.browserContext = TestHelper.getContext();
         this.page = TestHelper.getPage();
-        this.playwright = TestHelper.getPlaywright();
     }
     private void closeBrowserAndPlaywright() {
         browserContext.close();
-        playwright.close();
     }
     private void addTraceToAllure() {
         String traceFileName = "build/trace.zip";
