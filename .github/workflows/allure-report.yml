@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: 'shansty08'
 
       - name: Get Allure history
         uses: actions/checkout@v2
