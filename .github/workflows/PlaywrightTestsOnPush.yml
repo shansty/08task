@@ -55,7 +55,6 @@ jobs:
       - name: Copy History
         uses: actions/checkout@v2
         if: always()
-        continue-on-error: true
         with:
             ref: gh-pages
             path: gh-pages
