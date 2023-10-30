@@ -34,6 +34,11 @@ jobs:
             name: Log ${{ matrix.browser }}
             path: log/*
 
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: build/allure-results
+
       - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v3
