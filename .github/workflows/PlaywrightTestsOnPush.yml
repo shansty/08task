@@ -40,18 +40,18 @@ jobs:
         with:
           name: AllureReport ${{ matrix.browser }}
           path: target/allure-results/*
-  allure:
-    name: 'Allure'
-    runs-on: ubuntu-latest
-    needs: playwright
-    steps:
+
       - name: Upload Downloaded File
         if: always()
         uses: actions/upload-artifact@v3
         with:
             name: Download ${{ matrix.browser }}
             path: Download/*
-
+  allure:
+    name: 'Allure'
+    runs-on: ubuntu-latest
+    needs: playwright
+    steps:
       - name: Copy History
         uses: actions/checkout@v2
         if: always()
