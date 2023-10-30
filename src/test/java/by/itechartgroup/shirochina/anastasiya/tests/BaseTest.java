@@ -17,7 +17,6 @@ import java.io.IOException;
 public class BaseTest {
     static Playwright playwright;
     static Browser browser;
-    //
     static Logger logger;
     static BrowserContext context;
     Page page;
