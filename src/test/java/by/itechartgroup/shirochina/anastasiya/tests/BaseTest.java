@@ -34,7 +34,7 @@ public class BaseTest {
         if (browser != null) {
             logger.info("Browser is initialized");
         } else {
-
+            logger.error("Browser name not found");
         }
     }
     @AfterAll
