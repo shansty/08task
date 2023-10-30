@@ -51,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: build/allure-results/*
+          path: build/allure-results
 
   allure:
     name: 'Allure'
@@ -68,7 +68,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: build/allure-results/*
+          path: build/allure-results
 
       - name: Build report
         uses: simple-elf/allure-report-action@master
