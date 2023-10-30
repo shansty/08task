@@ -37,14 +37,14 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: build/allure-results
+          path: target/allure-results
 
       - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: AllureReport ${{ matrix.browser }}
-          path: build/allure-results/*
+          path: target/allure-results/*
 
       - name: Upload Downloaded File
         if: always()
@@ -54,12 +54,12 @@ jobs:
             path: Download/*
 
       - name: LOG build/allure-results
-        run: ls build/allure-results
+        run: ls target/allure-results
 
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: build/allure-results
+          path: target/allure-results
 
   allure:
     name: 'Allure'
@@ -76,16 +76,16 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: build/allure-results
+          path: target/allure-results
 
       - name: LOG build/allure-results
-        run: ls build/allure-results
+        run: ls target/allure-results
 
       - name: Build report
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
-            allure_results: build/allure-results
+            allure_results: target/allure-results
             allure_history: allure-history
             keep_reports: 5
 
