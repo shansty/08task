@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [ chromium]
+        browser: [ chromium, firefox, webkit ]
     container:
       image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
     steps:
@@ -48,6 +48,9 @@ jobs:
             name: Download ${{ matrix.browser }}
             path: Download/*
 
+      - name: LOG build/allure-results
+        run: ls build/allure-results
+
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
@@ -69,6 +72,9 @@ jobs:
         with:
           name: my-artifact
           path: build/allure-results
+
+      - name: LOG build/allure-results
+        run: ls build/allure-results
 
       - name: Build report
         uses: simple-elf/allure-report-action@master
