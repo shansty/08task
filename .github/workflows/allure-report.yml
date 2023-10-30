@@ -1,14 +1,12 @@
 name: allure-report
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-  pull_request_target:
+  release:
     types:
-      - synchronize
-
+      - created
+  push:
+    branches-ignore:
+      - '!master'
 jobs:
   allure:
     name: Generate Allure Report
@@ -27,10 +25,13 @@ jobs:
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
         if: always()
+        id: allure-report
         with:
-          allure_results: allure-results
+          allure_results: build/allure-results
+          gh_pages: gh-pages
           allure_history: allure-history
           keep_reports: 5
+          allure_report: allure-report
 
       - name: Deploy report to Github Pages
         if: always()
