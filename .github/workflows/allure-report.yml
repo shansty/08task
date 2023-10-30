@@ -4,6 +4,9 @@ on:
   release:
     types:
       - created
+  push:
+    branches-ignore:
+      - '!master'
 jobs:
   allure:
     name: Generate Allure Report
