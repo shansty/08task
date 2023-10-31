@@ -6,6 +6,8 @@ import by.itechartgroup.shirochina.anastasiya.utils.BrowserHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.LoggerHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.*;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
@@ -54,6 +56,10 @@ public class BaseTest {
         categoriesPage = new MainPage(page);
         TestHelper.setContext(context);
         TestHelper.setPage(page);
+
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
+        lifecycle.updateTestCase(testResult -> testResult.setDescription(testResult.getName() + browser.browserType().name()));
     }
 
     @AfterEach
