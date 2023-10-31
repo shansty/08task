@@ -25,7 +25,7 @@ jobs:
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
-        run: mvn test "-Dbrowser.name = ${{ matrix.browser }}"
+        run: mvn test "-Dbrowser.name=${{matrix.browser}}"
 
       - name: Upload Log File
         if: always()
