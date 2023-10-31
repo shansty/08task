@@ -95,9 +95,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set a custom status check
-        run: echo "::set-output name=target_url::https://example.com/documentation"
-
-      - name: Check status and create GitHub status
-        if: steps.status-check.outputs.status == 'success'
+        id: status-check
         run: |
-          gh status create -u "${{ steps.status-check.outputs.target_url }}"
+          echo "::set-output name=title::Custom Check"
+          echo "::set-output name=summary::This is a custom check with environment and URL information"
+          echo "::set-output name=target_url::https://shansty.github.io/08task"
+          echo "::set-output name=environment::Production"
+          echo "::set-output name=url::https://shansty.github.io/08task"
