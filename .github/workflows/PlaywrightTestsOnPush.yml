@@ -91,3 +91,6 @@ jobs:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
+
+      - name: Set a custom status check
+        run:  echo "::set-output name=target_url::https://example.com/documentation"
