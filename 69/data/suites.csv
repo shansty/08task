@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Oct 31 07:31:14 GMT 2023","Tue Oct 31 07:31:33 GMT 2023","18966","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","testSteamWeb","testSteamWeb()chromium","testSteamWeb()chromiumchromium"
+"passed","Tue Oct 31 07:31:05 GMT 2023","Tue Oct 31 07:31:13 GMT 2023","7709","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","secondTest","secondTest()chromium","secondTest()chromiumchromium"
