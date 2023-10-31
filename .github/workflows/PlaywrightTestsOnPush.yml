@@ -95,3 +95,7 @@ jobs:
     environment:
       name: google
       url: https://google.com
+
+    steps:
+      - name: test
+        run: echo Hello
