@@ -34,6 +34,7 @@ public class BaseTest {
         LoggerHelper.installLogger();
         logger = LogManager.getLogger();
         browser = BrowserHelper.getBrowserSetting(playwright);
+        System.out.println("Browser in BaseTest " + browser.browserType().name());
         if (browser != null) {
             logger.info("Browser is initialized");
         } else {

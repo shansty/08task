@@ -8,9 +8,11 @@ public class PropertiesHelper {
     static String browserName;
     public static void readProperty() throws IOException {
         browserName = System.getProperty("browser.name");
+        System.out.println(browserName + " get DB");
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
         if (browserName != null) {
             System.setProperty("browser.name", browserName);
+            System.out.println("Debug BN after set " + browserName);
         }
 
     }
