@@ -9,6 +9,7 @@ public class BrowserHelper {
     public static Browser getBrowserSetting(Playwright playwright) {
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless());
         String browserName = PropertiesHelper.getBrowser();
+        System.out.println(browserName + "DB");
         switch (browserName) {
             case "chromium":
                 return playwright.chromium().launch(launchOptions);

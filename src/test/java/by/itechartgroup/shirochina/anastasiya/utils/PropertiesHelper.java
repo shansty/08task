@@ -17,11 +17,7 @@ public class PropertiesHelper {
 
     }
     public static String getBrowser() {
-        if (browserName!= null) {
-            return browserName;
-        } else {
-            return System.getProperty("browser.name");
-        }
+        return System.getProperty("browser.name");
     }
     public static boolean getBrowserHeadless() {
         return Boolean.parseBoolean(System.getProperty("browser.headless"));
