@@ -6,13 +6,18 @@ import java.io.IOException;
 
 public class PropertiesHelper {
     public static void readProperty() throws IOException {
+        System.out.println("DEBUG browser name");
+        System.out.println(System.getProperty("browser.name"));
+
+        String browserName = System.getProperty("browser.name");
+        System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
+
+        if (browserName != null) {
+            System.setProperty("browser.name", browserName);
+        }
+
         System.out.println("DEBUG browser name2");
         System.out.println(System.getProperty("browser.name"));
-        System.out.println(System.getProperties());
-
-        System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
-        System.out.println("DEBUG test");
-        System.out.println(System.getProperties());
 
     }
     public static String getBrowser() {

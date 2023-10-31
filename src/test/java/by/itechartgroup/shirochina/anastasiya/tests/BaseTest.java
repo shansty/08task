@@ -58,15 +58,7 @@ public class BaseTest {
         TestHelper.setContext(context);
         TestHelper.setPage(page);
 
-        String browserName = System.getProperty("browser");
-        System.out.println("DEBUG browser name");
-        System.out.println(browserName);
 
-        System.out.println("DEBUG browser name2");
-        System.out.println(System.getProperty("browser.name"));
-
-        System.out.println("DEBUG browser");
-        System.out.println(browser.browserType());
 
         AllureLifecycle lifecycle = Allure.getLifecycle();
         lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
