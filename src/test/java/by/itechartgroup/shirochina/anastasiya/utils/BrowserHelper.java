@@ -12,10 +12,13 @@ public class BrowserHelper {
         System.out.println(browserName + "DB");
         switch (browserName) {
             case "chromium":
+                System.out.println("ch");
                 return playwright.chromium().launch(launchOptions);
             case "firefox":
+                System.out.println("fr");
                 return playwright.firefox().launch(launchOptions);
             case "webkit":
+                System.out.println("wk");
                 return playwright.webkit().launch(launchOptions);
             default:
                 return null;
