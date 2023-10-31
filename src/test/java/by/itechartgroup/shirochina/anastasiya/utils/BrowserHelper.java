@@ -10,14 +10,12 @@ public class BrowserHelper {
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless());
         String browserName = PropertiesHelper.getBrowser();
         switch (browserName) {
-            case "chrome":
+            case "chromium":
                 return playwright.chromium().launch(launchOptions);
             case "firefox":
                 return playwright.firefox().launch(launchOptions);
             case "webkit":
                 return playwright.webkit().launch(launchOptions);
-            case "chromium":
-                return playwright.chromium().launch(launchOptions);
             default:
                 return null;
         }
