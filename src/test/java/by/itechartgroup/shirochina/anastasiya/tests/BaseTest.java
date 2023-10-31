@@ -61,8 +61,8 @@ public class BaseTest {
 
 
         AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setHistoryId(testResult.getHistoryId() + browser.browserType().name()));
         lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
-        lifecycle.updateTestCase(testResult -> testResult.setDescription(testResult.getName() + browser.browserType().name()));
     }
 
     @AfterEach
