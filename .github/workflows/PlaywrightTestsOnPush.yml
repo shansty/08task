@@ -92,13 +92,6 @@ jobs:
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set a custom status check
-        id: status-check
-        run: |
-          echo "::set-output name=title::Custom Check"
-          echo "::set-output name=summary::This is a custom check with environment and URL information"
-          echo "::set-output name=target_url::https://shansty.github.io/08task"
-          echo "::set-output name=environment::Production"
-          echo "::set-output name=url::https://shansty.github.io/08task"
+    environment:
+      name: google
+      url: https://google.com
