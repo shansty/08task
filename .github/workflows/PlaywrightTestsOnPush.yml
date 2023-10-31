@@ -92,7 +92,9 @@ jobs:
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
   test:
-    name: Test [https//google.com](https//google.com)
+    name: Test
+    description: [Production](https//google.com)
+
     runs-on: ubuntu-latest
     environment:
       name: google
