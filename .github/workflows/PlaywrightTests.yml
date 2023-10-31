@@ -26,7 +26,7 @@ jobs:
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
-        run: mvn test -D exec.args="test --browser ${{ github.event.inputs.browser }}"
+        run: mvn test "-Dbrowser.name=${{ github.event.inputs.browser }}"
 
       - name: Upload Log File
         if: always()
