@@ -7,18 +7,11 @@ import java.io.IOException;
 public class PropertiesHelper {
     static String browserName;
     public static void readProperty() throws IOException {
-        System.out.println("DEBUG browser name");
-        System.out.println(System.getProperty("browser.name"));
-
         browserName = System.getProperty("browser.name");
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
-
         if (browserName != null) {
             System.setProperty("browser.name", browserName);
         }
-
-        System.out.println("DEBUG browser name2");
-        System.out.println(System.getProperty("browser.name"));
 
     }
     public static String getBrowser() {

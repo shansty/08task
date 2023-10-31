@@ -16,6 +16,8 @@ public class BrowserHelper {
                 return playwright.firefox().launch(launchOptions);
             case "webkit":
                 return playwright.webkit().launch(launchOptions);
+            case "chromium":
+                return playwright.chromium().launch(launchOptions);
             default:
                 return null;
         }
