@@ -12,7 +12,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 
 @ExtendWith(MyTestWatcher.class)
@@ -45,7 +52,7 @@ public class BaseTest {
     }
 
     @BeforeEach
-    void createContextAndPage() {
+    void createContextAndPage() throws FileNotFoundException {
         logger.info("Test started");
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
         context.setDefaultTimeout(60000);
@@ -56,6 +63,20 @@ public class BaseTest {
         categoriesPage = new MainPage(page);
         TestHelper.setContext(context);
         TestHelper.setPage(page);
+
+        String browserName = System.getProperty("browser");
+        System.out.println("DEBUG browser name");
+        System.out.println(browserName);
+
+        System.out.println("DEBUG browser name2");
+        System.out.println(System.getProperty("browser.name"));
+
+        System.out.println("DEBUG browser");
+        System.out.println(browser.browserType());
+
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
+        lifecycle.updateTestCase(testResult -> testResult.setDescription(testResult.getName() + browser.browserType().name()));
     }
 
     @AfterEach
