@@ -1,0 +1,19 @@
+INFO  2023-10-31 17:12:52,938  [main] tests.BaseTest (BaseTest.java:42) - Browser is initialized
+INFO  2023-10-31 17:12:53,009  [main] tests.BaseTest (BaseTest.java:54) - Test started
+INFO  2023-10-31 17:12:53,119  [main] tests.SteamTest (SteamTest.java:154) - Open base url
+INFO  2023-10-31 17:12:55,267  [main] tests.SteamTest (SteamTest.java:156) - Hover to category
+INFO  2023-10-31 17:12:55,529  [main] tests.SteamTest (SteamTest.java:158) - Click on category
+DEBUG 2023-10-31 17:12:56,860  [main] tests.SteamTest (SteamTest.java:160) - Wait for game block
+TRACE 2023-10-31 17:12:58,217  [main] tests.SteamTest (SteamTest.java:162) - Wait for load state
+DEBUG 2023-10-31 17:12:58,676  [main] tests.SteamTest (SteamTest.java:164) - Scroll to game block
+INFO  2023-10-31 17:12:59,183  [main] tests.SteamTest (SteamTest.java:166) - Click on New and Trending button
+INFO  2023-10-31 17:13:00,144  [main] tests.BaseTest (BaseTest.java:74) - Test ended
+INFO  2023-10-31 17:13:01,782  [main] tests.BaseTest (BaseTest.java:54) - Test started
+INFO  2023-10-31 17:13:01,848  [main] tests.SteamTest (SteamTest.java:28) - Open base url
+INFO  2023-10-31 17:13:03,784  [main] tests.SteamTest (SteamTest.java:30) - Hover to category
+INFO  2023-10-31 17:13:04,087  [main] tests.SteamTest (SteamTest.java:32) - Click on category
+DEBUG 2023-10-31 17:13:05,517  [main] tests.SteamTest (SteamTest.java:34) - Wait for game block
+TRACE 2023-10-31 17:13:08,578  [main] tests.SteamTest (SteamTest.java:36) - Wait for load state
+DEBUG 2023-10-31 17:13:08,579  [main] tests.SteamTest (SteamTest.java:38) - Scroll to game block
+INFO  2023-10-31 17:13:09,531  [main] tests.SteamTest (SteamTest.java:40) - Click on New and Trending button
+INFO  2023-10-31 17:13:11,378  [main] tests.BaseTest (BaseTest.java:74) - Test ended
