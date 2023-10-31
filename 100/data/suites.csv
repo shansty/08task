@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Oct 31 16:38:45 GMT 2023","Tue Oct 31 16:38:54 GMT 2023","9502","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","secondTest","secondTest()firefox",""
+"passed","Tue Oct 31 16:38:43 GMT 2023","Tue Oct 31 16:38:52 GMT 2023","8559","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","secondTest","secondTest()chromium",""
+"passed","Tue Oct 31 16:38:54 GMT 2023","Tue Oct 31 16:39:11 GMT 2023","16666","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","testSteamWeb","testSteamWeb()firefox",""
+"passed","Tue Oct 31 16:38:52 GMT 2023","Tue Oct 31 16:39:10 GMT 2023","17729","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","testSteamWeb","testSteamWeb()chromium",""
