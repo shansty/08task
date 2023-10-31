@@ -92,7 +92,7 @@ jobs:
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
   test:
-    name: Test ${{ github.ref }}
+    name: Test https//google.comg
     runs-on: ubuntu-latest
     environment:
       name: google
