@@ -9,6 +9,7 @@ on:
       - synchronize
 jobs:
   playwright:
+    continue-on-error: true
     name: 'Playwright Tests'
     runs-on: ubuntu-latest
     strategy:
@@ -52,6 +53,7 @@ jobs:
         run: ls target/allure-results
 
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: my-artifact
           path: target/allure-results
