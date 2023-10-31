@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Tue Oct 31 17:23:30 GMT 2023","Tue Oct 31 17:23:44 GMT 2023","13305","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","testSteamWeb","testSteamWeb()webkit",""
+"passed","Tue Oct 31 17:23:13 GMT 2023","Tue Oct 31 17:23:22 GMT 2023","9219","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","secondTest","secondTest()chromium",""
+"passed","Tue Oct 31 17:23:19 GMT 2023","Tue Oct 31 17:23:30 GMT 2023","11537","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","secondTest","secondTest()webkit",""
+"failed","Tue Oct 31 17:23:24 GMT 2023","Tue Oct 31 17:23:35 GMT 2023","10993","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","testSteamWeb","testSteamWeb()firefox",""
+"passed","Tue Oct 31 17:23:13 GMT 2023","Tue Oct 31 17:23:24 GMT 2023","10702","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","secondTest","secondTest()firefox",""
+"failed","Tue Oct 31 17:23:22 GMT 2023","Tue Oct 31 17:23:34 GMT 2023","11938","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","","by.itechartgroup.shirochina.anastasiya.tests.SteamTest","testSteamWeb","testSteamWeb()chromium",""
