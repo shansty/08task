@@ -11,6 +11,8 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +27,10 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class SteamTest extends BaseTest {
     @Test
     public void testSteamWeb() {
+
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
+
         logger.info("Open base url");
         mainPage.getBaseUrl();
         logger.info("Hover to category");
@@ -150,6 +156,11 @@ public class SteamTest extends BaseTest {
     }
     @Test
     public void secondTest() {
+
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
+
+
         logger.info("Open base url");
         mainPage.getBaseUrl();
         logger.info("Hover to category");
