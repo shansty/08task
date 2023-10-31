@@ -5,11 +5,12 @@ import org.apache.logging.log4j.Level;
 import java.io.IOException;
 
 public class PropertiesHelper {
+    static String browserName;
     public static void readProperty() throws IOException {
         System.out.println("DEBUG browser name");
         System.out.println(System.getProperty("browser.name"));
 
-        String browserName = System.getProperty("browser.name");
+        browserName = System.getProperty("browser.name");
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
 
         if (browserName != null) {
@@ -21,7 +22,11 @@ public class PropertiesHelper {
 
     }
     public static String getBrowser() {
-        return System.getProperty("browser.name");
+        if (browserName!= null) {
+            return browserName;
+        } else {
+            return System.getProperty("browser.name");
+        }
     }
     public static boolean getBrowserHeadless() {
         return Boolean.parseBoolean(System.getProperty("browser.headless"));
