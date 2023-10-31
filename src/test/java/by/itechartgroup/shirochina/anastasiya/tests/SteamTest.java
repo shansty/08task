@@ -39,7 +39,6 @@ public class SteamTest extends BaseTest {
         mainPage.getGameBlock().scrollIntoViewIfNeeded();
         logger.info("Click on New and Trending button");
         mainPage.getNewAndTrendingButton().click();
-        Assertions.assertFalse(true);
 
         //Клик на игру с самой большой скидкой или самой большой ценой;
         logger.trace("Wait for load state");
@@ -148,6 +147,7 @@ public class SteamTest extends BaseTest {
         Path destinationPath = Paths.get(PropertiesHelper.getDownloadDir(), formattedTime + download.suggestedFilename());
         logger.info("Save file");
         download.saveAs(destinationPath);
+        Assertions.assertFalse(true);
     }
     @Test
     public void secondTest() {
