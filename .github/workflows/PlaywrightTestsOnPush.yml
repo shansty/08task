@@ -60,6 +60,7 @@ jobs:
     name: 'Allure'
     runs-on: ubuntu-latest
     needs: playwright
+    if: always()
     steps:
       - name: Copy History
         uses: actions/checkout@v2
@@ -92,6 +93,7 @@ jobs:
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
   test:
+    needs: allure
     name: Test https://shansty.github.io/08task/${{ github.run_number }}
     runs-on: ubuntu-latest
     environment:
