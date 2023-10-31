@@ -92,12 +92,11 @@ jobs:
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
   test:
-    run-name: Test [https//google.com](https//google.com)
-
+    name: Test https://shansty.github.io/08task/${{ github.run_number }}
     runs-on: ubuntu-latest
     environment:
       name: google
-      url: https://google.com
+      url: https://shansty.github.io/08task/${{ github.run_number }}
 
     steps:
       - name: test
