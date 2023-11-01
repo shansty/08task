@@ -105,3 +105,16 @@ jobs:
     steps:
       - name: test
         run: echo Hello
+  testsOn: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run the action # You would run your tests before this using the output to set state/desc
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{GITHUB_TOKEN}}
+          context: 'Test run'
+          description: 'Passed'
+          state: 'success'
+          target_url: https://shansty.github.io/08task/${{ github.run_number }}
+          sha: ${{github.event.pull_request.head.sha || github.sha}}
