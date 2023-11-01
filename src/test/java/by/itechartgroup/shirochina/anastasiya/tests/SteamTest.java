@@ -147,7 +147,6 @@ public class SteamTest extends BaseTest {
         Path destinationPath = Paths.get(PropertiesHelper.getDownloadDir(), formattedTime + download.suggestedFilename());
         logger.info("Save file");
         download.saveAs(destinationPath);
-        Assertions.assertFalse(true);
     }
     @Test
     public void secondTest() {
