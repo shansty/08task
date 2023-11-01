@@ -1,0 +1,41 @@
+INFO  2023-11-01 07:53:21,469  [main] tests.BaseTest (BaseTest.java:42) - Browser is initialized
+INFO  2023-11-01 07:53:21,553  [main] tests.BaseTest (BaseTest.java:54) - Test started
+INFO  2023-11-01 07:53:21,660  [main] tests.SteamTest (SteamTest.java:154) - Open base url
+INFO  2023-11-01 07:53:23,420  [main] tests.SteamTest (SteamTest.java:156) - Hover to category
+INFO  2023-11-01 07:53:23,689  [main] tests.SteamTest (SteamTest.java:158) - Click on category
+DEBUG 2023-11-01 07:53:25,007  [main] tests.SteamTest (SteamTest.java:160) - Wait for game block
+TRACE 2023-11-01 07:53:26,352  [main] tests.SteamTest (SteamTest.java:162) - Wait for load state
+DEBUG 2023-11-01 07:53:27,013  [main] tests.SteamTest (SteamTest.java:164) - Scroll to game block
+INFO  2023-11-01 07:53:27,290  [main] tests.SteamTest (SteamTest.java:166) - Click on New and Trending button
+INFO  2023-11-01 07:53:28,195  [main] tests.BaseTest (BaseTest.java:74) - Test ended
+INFO  2023-11-01 07:53:29,810  [main] tests.BaseTest (BaseTest.java:54) - Test started
+INFO  2023-11-01 07:53:29,882  [main] tests.SteamTest (SteamTest.java:28) - Open base url
+INFO  2023-11-01 07:53:31,677  [main] tests.SteamTest (SteamTest.java:30) - Hover to category
+INFO  2023-11-01 07:53:31,989  [main] tests.SteamTest (SteamTest.java:32) - Click on category
+DEBUG 2023-11-01 07:53:33,443  [main] tests.SteamTest (SteamTest.java:34) - Wait for game block
+TRACE 2023-11-01 07:53:34,717  [main] tests.SteamTest (SteamTest.java:36) - Wait for load state
+DEBUG 2023-11-01 07:53:35,237  [main] tests.SteamTest (SteamTest.java:38) - Scroll to game block
+INFO  2023-11-01 07:53:35,802  [main] tests.SteamTest (SteamTest.java:40) - Click on New and Trending button
+TRACE 2023-11-01 07:53:36,767  [main] tests.SteamTest (SteamTest.java:44) - Wait for load state
+DEBUG 2023-11-01 07:53:37,776  [main] tests.SteamTest (SteamTest.java:46) - Wait for price and sale block to be visible
+DEBUG 2023-11-01 07:53:37,862  [main] tests.SteamTest (SteamTest.java:48) - Get list with sales
+DEBUG 2023-11-01 07:53:37,898  [main] tests.SteamTest (SteamTest.java:54) - Check is list with sales greater than zero
+DEBUG 2023-11-01 07:53:37,899  [main] tests.SteamTest (SteamTest.java:56) - list with sales size is 2
+DEBUG 2023-11-01 07:53:37,900  [main] tests.SteamTest (SteamTest.java:62) - Find max sale from list
+DEBUG 2023-11-01 07:53:37,901  [main] tests.SteamTest (SteamTest.java:65) - Max sale is -25%
+DEBUG 2023-11-01 07:53:37,937  [main] tests.SteamTest (SteamTest.java:67) - Price on max sale is $14.99
+INFO  2023-11-01 07:53:37,937  [main] tests.SteamTest (SteamTest.java:68) - Click on game with max sale
+DEBUG 2023-11-01 07:53:38,410  [main] tests.SteamTest (SteamTest.java:94) - Check is game need age confirmation
+DEBUG 2023-11-01 07:53:39,975  [main] tests.SteamTest (SteamTest.java:110) - Check is max sale is exist
+DEBUG 2023-11-01 07:53:39,976  [main] tests.SteamTest (SteamTest.java:112) - Max sale is exist
+INFO  2023-11-01 07:53:41,286  [main] tests.SteamTest (SteamTest.java:115) - Assert that sale is correct
+INFO  2023-11-01 07:53:41,387  [main] tests.SteamTest (SteamTest.java:117) - Assert that price on sale is correct
+INFO  2023-11-01 07:53:41,421  [main] tests.SteamTest (SteamTest.java:128) - Click to install button
+DEBUG 2023-11-01 07:53:42,086  [main] tests.SteamTest (SteamTest.java:130) - Wait for load state
+INFO  2023-11-01 07:53:43,044  [main] tests.SteamTest (SteamTest.java:135) - Wait for download game
+INFO  2023-11-01 07:53:43,569  [main] tests.SteamTest (SteamTest.java:139) - Assert that download is exist
+INFO  2023-11-01 07:53:43,573  [main] tests.SteamTest (SteamTest.java:141) - Assert that name of file is correct
+DEBUG 2023-11-01 07:53:43,573  [main] tests.SteamTest (SteamTest.java:143) - Select the date format
+DEBUG 2023-11-01 07:53:43,575  [main] tests.SteamTest (SteamTest.java:146) - Indicate path for saving file and name
+INFO  2023-11-01 07:53:43,577  [main] tests.SteamTest (SteamTest.java:148) - Save file
+INFO  2023-11-01 07:53:43,733  [main] tests.BaseTest (BaseTest.java:74) - Test ended
