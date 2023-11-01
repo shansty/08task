@@ -28,43 +28,33 @@ public class MainPage extends BasePage {
         String url = "https://store.steampowered.com/";
         page.navigate(url);
     }
-
     public void clickOnCategory(Categories categories) {
         page.locator(Navigation.getLocatorByCategoriesName(categories)).click();
     }
-
     public Locator getGameBlock() {
         return gameBlock;
     }
-
     public Locator getNewAndTrendingButton() {
         return newAndTrendingButton;
     }
-
     public Locator getSalesLocators() {
         return salesLocators;
     }
-
     public Locator getPriceLocatorBySale(int sale) {
         return page.locator("//div[contains(@class, 'salepreviewwidgets_StoreSalePriceActionWidgetContainer')][.//div[contains(@class, 'salepreviewwidgets_StoreSaleDiscountBox') and contains(text()," + sale + ")]]//div[contains(@class, 'salepreviewwidgets_StoreSalePriceBox')]");
     }
-
     public Locator getLinkLocatorBySale(int sale) {
         return page.locator("//div[contains(@class, 'salepreviewwidgets_SaleItemBrowserRow')][.//div[contains(@class, 'salepreviewwidgets_StoreSaleDiscountBox') and contains(text()," + sale + ")]]//a");
     }
-
     public Locator getPriceLocatorByPrice(double price) {
         return page.locator("//div[contains(@class, 'salepreviewwidgets_StoreSalePriceBox') and contains(text()," + price + ")]");
     }
-
     public Locator getLinkLocatorByPrice(double price) {
         return page.locator("//div[contains(@class, 'salepreviewwidgets_SaleItemBrowserRow')][.//div[contains(@class, 'salepreviewwidgets_StoreOriginalPrice') and contains(text()," + price + ")]//a");
     }
-
     public Locator getPricesLocators() {
         return pricesLocators;
     }
-
     public Locator getPriceAndSaleBlock() {
         return priceAndSaleBlock;
     }

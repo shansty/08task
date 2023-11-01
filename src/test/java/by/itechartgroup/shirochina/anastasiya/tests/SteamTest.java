@@ -14,6 +14,7 @@ import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 public class SteamTest extends BaseTest {
     @Test
-    public void testSteamWeb() {
+    public void testSteamWeb() throws IOException {
         logger.info("Open base url");
         mainPage.getBaseUrl();
         logger.info("Hover to category");

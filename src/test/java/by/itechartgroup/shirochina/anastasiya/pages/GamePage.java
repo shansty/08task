@@ -7,7 +7,6 @@ public class GamePage extends BasePage{
     public GamePage(Page page) {
         super(page);
     }
-
     public Locator getSaleLocatorByDiscount(String sale) {
         sale = sale.replaceAll("[^0-9.]+", "");
         return page.locator("//div[@class='discount_block game_purchase_discount']//div[@class = 'discount_pct' and contains(text()," + sale + ")]");

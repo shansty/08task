@@ -36,32 +36,26 @@ public class MyTestWatcher implements TestWatcher {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        closeBrowserAndPlaywright();
+        browserContext.close();
     }
     @Override
     public void testSuccessful(ExtensionContext context) {
         initializeVariable();
-        addTraceToAllure();
-        closeBrowserAndPlaywright();
+        browserContext.close();
     }
     @Override
     public void testAborted(ExtensionContext context, Throwable cause) {
         initializeVariable();
-        addTraceToAllure();
-        closeBrowserAndPlaywright();
+        browserContext.close();
     }
     @Override
     public void testDisabled(ExtensionContext context, Optional<String> reason) {
         initializeVariable();
-        addTraceToAllure();
-        closeBrowserAndPlaywright();
+        browserContext.close();
     }
     private void initializeVariable() {
         this.browserContext = TestHelper.getContext();
         this.page = TestHelper.getPage();
-    }
-    private void closeBrowserAndPlaywright() {
-        browserContext.close();
     }
     private void addTraceToAllure() {
         String traceFileName = "build/trace.zip";

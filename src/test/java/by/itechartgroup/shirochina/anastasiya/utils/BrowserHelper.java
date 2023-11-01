@@ -4,9 +4,11 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Playwright;
 
+import java.io.IOException;
+
 public class BrowserHelper {
 
-    public static Browser getBrowserSetting(Playwright playwright) {
+    public static Browser getBrowserSetting(Playwright playwright) throws IOException {
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions().setHeadless(PropertiesHelper.getBrowserHeadless());
         String browserName = PropertiesHelper.getBrowser();
         switch (browserName) {

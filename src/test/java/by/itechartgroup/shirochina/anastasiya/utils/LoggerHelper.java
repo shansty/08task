@@ -8,13 +8,14 @@ import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class LoggerHelper {
     private static String logFileName;
 
-    public static void installLogger() {
+    public static void installLogger() throws IOException {
         LoggerContext contextLogger = (LoggerContext) LogManager.getContext(false);
         Configuration config = contextLogger.getConfiguration();
         LoggerConfig loggerConfig = config.getLoggerConfig("by.itechartgroup.shirochina.anastasiya.tests");
@@ -54,7 +55,6 @@ public class LoggerHelper {
     public static String getLogFileName() {
         return logFileName;
     }
-
     public static void setLogFileName(String logFileName) {
         LoggerHelper.logFileName = logFileName;
     }

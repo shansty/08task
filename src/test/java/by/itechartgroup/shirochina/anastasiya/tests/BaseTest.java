@@ -12,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -30,7 +29,6 @@ public class BaseTest {
     @BeforeAll
     public static void launchBrowser() throws IOException {
         playwright = Playwright.create();
-        PropertiesHelper.readProperty();
         LoggerHelper.installLogger();
         logger = LogManager.getLogger();
         browser = BrowserHelper.getBrowserSetting(playwright);
@@ -46,7 +44,7 @@ public class BaseTest {
     }
 
     @BeforeEach
-    void createContextAndPage() throws FileNotFoundException {
+    void createContextAndPage() {
         logger.info("Test started");
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
         context.setDefaultTimeout(90000);
@@ -59,7 +57,7 @@ public class BaseTest {
         TestHelper.setPage(page);
         AllureLifecycle lifecycle = Allure.getLifecycle();
         lifecycle.updateTestCase(testResult -> testResult.setHistoryId(browser.browserType().name() + testResult.getHistoryId()));
-        lifecycle.updateTestCase(testResult -> testResult.setName("Browser is: " + browser.browserType().name() + " Test name: " + testResult.getName()));
+        lifecycle.updateTestCase(testResult -> testResult.setName("Browser: " + browser.browserType().name() + ", Test name: " + testResult.getName()));
     }
 
     @AfterEach

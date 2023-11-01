@@ -18,23 +18,18 @@ public class AgeConfirmationPage extends BasePage {
         this.yearOfBirthSelect = page.locator("//select[@name = 'ageYear']");
         this.confirmButton = page.locator("//a[@id = 'view_product_page_btn']");
     }
-
     public Locator getNotificationText() {
         return notificationText;
     }
-
     public Locator getDayOfBirthSelect() {
         return dayOfBirthSelect;
     }
-
     public Locator getMonthOfBirthSelect() {
         return monthOfBirthSelect;
     }
-
     public Locator getYearOfBirthSelect() {
         return yearOfBirthSelect;
     }
-
     public Locator getConfirmButton() {
         return confirmButton;
     }
