@@ -1,7 +1,6 @@
 package by.itechartgroup.shirochina.anastasiya.utils;
 
 import org.apache.logging.log4j.Level;
-
 import java.io.IOException;
 
 public class PropertiesHelper {

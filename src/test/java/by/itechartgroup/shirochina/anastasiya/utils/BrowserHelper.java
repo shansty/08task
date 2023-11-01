@@ -3,7 +3,6 @@ package by.itechartgroup.shirochina.anastasiya.utils;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Playwright;
-
 import java.io.IOException;
 
 public class BrowserHelper {

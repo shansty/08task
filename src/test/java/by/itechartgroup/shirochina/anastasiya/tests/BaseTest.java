@@ -4,7 +4,6 @@ import by.itechartgroup.shirochina.anastasiya.pages.BasePage;
 import by.itechartgroup.shirochina.anastasiya.pages.MainPage;
 import by.itechartgroup.shirochina.anastasiya.utils.BrowserHelper;
 import by.itechartgroup.shirochina.anastasiya.utils.LoggerHelper;
-import by.itechartgroup.shirochina.anastasiya.utils.PropertiesHelper;
 import com.microsoft.playwright.*;
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureLifecycle;
@@ -42,7 +41,6 @@ public class BaseTest {
     public static void closePlaywright() {
         playwright.close();
     }
-
     @BeforeEach
     void createContextAndPage() {
         logger.info("Test started");
@@ -59,7 +57,6 @@ public class BaseTest {
         lifecycle.updateTestCase(testResult -> testResult.setHistoryId(browser.browserType().name() + testResult.getHistoryId()));
         lifecycle.updateTestCase(testResult -> testResult.setName("Browser: " + browser.browserType().name() + ", Test name: " + testResult.getName()));
     }
-
     @AfterEach
     void closeContext() {
         logger.info("Test ended");

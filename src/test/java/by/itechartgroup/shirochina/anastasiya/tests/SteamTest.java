@@ -106,6 +106,7 @@ public class SteamTest extends BaseTest {
             ageConfirmationPage.getConfirmButton().click();
             newPage.waitForLoadState(LoadState.LOAD);
         }
+
         //проверка максимальной скидки или цены
         GamePage gamePage = new GamePage(newPage);
         logger.debug("Check is max sale is exist");
@@ -117,7 +118,6 @@ public class SteamTest extends BaseTest {
             assertThat(gamePage.getSaleLocatorByDiscount(maxSale).nth(0)).containsText(maxSale);
             logger.info("Assert that price on sale is correct");
             assertThat(gamePage.getPriceLocatorBySalesPrice(salesPrice)).containsText(salesPrice);
-
         } else {
             logger.debug("Max sale is not exist");
             logger.info("Assert that price is correct");
