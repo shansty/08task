@@ -149,7 +149,7 @@ public class SteamTest extends BaseTest {
         download.saveAs(destinationPath);
     }
     @Test
-    public void secondTest() {
+    public void testOpenSteamWebAndOpenTrendingButton() {
         logger.info("Open base url");
         mainPage.getBaseUrl();
         logger.info("Hover to category");

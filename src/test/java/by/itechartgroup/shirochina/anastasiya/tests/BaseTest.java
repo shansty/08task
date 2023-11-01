@@ -57,12 +57,9 @@ public class BaseTest {
         categoriesPage = new MainPage(page);
         TestHelper.setContext(context);
         TestHelper.setPage(page);
-
-
-
         AllureLifecycle lifecycle = Allure.getLifecycle();
-        lifecycle.updateTestCase(testResult -> testResult.setHistoryId(testResult.getHistoryId() + browser.browserType().name()));
-        lifecycle.updateTestCase(testResult -> testResult.setName(testResult.getName() + browser.browserType().name()));
+        lifecycle.updateTestCase(testResult -> testResult.setHistoryId(browser.browserType().name() + testResult.getHistoryId()));
+        lifecycle.updateTestCase(testResult -> testResult.setName("Browser is: " + browser.browserType().name() + " Test name: " + testResult.getName()));
     }
 
     @AfterEach
