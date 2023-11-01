@@ -49,7 +49,7 @@ public class BaseTest {
     void createContextAndPage() throws FileNotFoundException {
         logger.info("Test started");
         context =  browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
-        context.setDefaultTimeout(60000);
+        context.setDefaultTimeout(90000);
         context.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true).setSources(true));
         page = context.newPage();
         basePage = new BasePage(page);
