@@ -31,13 +31,9 @@ public class BaseTest {
     public static void launchBrowser() throws IOException {
         playwright = Playwright.create();
         PropertiesHelper.readProperty();
-        System.out.println("log1");
         LoggerHelper.installLogger();
-        System.out.println("log2");
         logger = LogManager.getLogger();
-        System.out.println("log3");
         browser = BrowserHelper.getBrowserSetting(playwright);
-        System.out.println("Browser in BaseTest " + browser.browserType().name());
         if (browser != null) {
             logger.info("Browser is initialized");
         } else {

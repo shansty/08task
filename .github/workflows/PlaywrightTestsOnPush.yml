@@ -105,5 +105,7 @@ jobs:
         with:
           authToken: ${{ secrets.GITHUB_TOKEN }}
           context: 'Test run'
+          description: 'Passed'
+          state: 'success'
           target_url: https://shansty.github.io/08task/${{ github.run_number }}
           sha: ${{github.event.pull_request.head.sha || github.sha}}
