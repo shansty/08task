@@ -89,13 +89,16 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
   test:
-    needs: allure
-    name: Test https://shansty.github.io/08task/${{ github.run_number }}
     runs-on: ubuntu-latest
-    environment:
-      name: report
-      url: https://shansty.github.io/08task/${{ github.run_number }}
-
+    needs: allure
     steps:
-      - name: test
-        run: echo Hello
+      - uses: actions/checkout@v2
+      - name: Run the action
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: 'Test run'
+          description: 'Passed'
+          state: 'success'
+          target_url: https://shansty.github.io/08task/${{ github.run_number }}
+          sha: ${{github.event.pull_request.head.sha || github.sha}}
